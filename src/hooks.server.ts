@@ -11,8 +11,8 @@ dbConnect().catch(err => {
 
 const clerkHandler = handleClerk(CLERK_SECRET_KEY, {
     debug: true,                  // Enable debug to see more detailed error messages
-    protectedPaths: ['/admin'],   // Specify paths that require user to be authenticated
-    signInUrl: '/sign-in'         // Redirect to this URL if the user is not authenticated
+    protectedPaths: ['/dashboard'],   // Specify paths that require user to be authenticated
+    signInUrl: '/login'         // Redirect to this URL if the user is not authenticated
 });
 
 export const handle: Handle = sequence(
