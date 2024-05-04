@@ -5,8 +5,13 @@
  * @author Peter Fortune
  * @date 04/05/2024
  */
+export interface Session {
+  name: string;
+  _id: string;
+  token: string;
+}
 
-export type User = {
+export interface User {
   _id: string;
   firstName: string;
   lastName: string;
@@ -15,7 +20,7 @@ export type User = {
   permission: string;
 }
 
-export type Location = {
+export interface Location {
   _id: string;
   title: string;
   category: string;
@@ -26,7 +31,7 @@ export type Location = {
   games?: Game[]
 }
 
-export type Game = {
+export interface Game {
   _id: string;
   title: string;
   age: number;

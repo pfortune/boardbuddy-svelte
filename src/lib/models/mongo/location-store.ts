@@ -4,7 +4,7 @@
  * add a new location, and delete a location either by its ID or delete all locations.
  * It integrates with a separate `gameMongoStore` to associate games with specific locations.
  *
- * @module locationMongoStore
+ * @module locationStore
  * @author Peter Fortune
  * @date 04/03/2024
  * @see Location Model for the structure of location data.
