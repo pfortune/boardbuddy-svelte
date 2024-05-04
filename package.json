@@ -43,6 +43,7 @@
   "type": "module",
   "dependencies": {
     "@floating-ui/dom": "1.6.4",
+    "clerk-sveltekit": "^0.4.2",
     "mongoose": "^8.3.3"
   }
 }

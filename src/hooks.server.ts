@@ -1,11 +1,24 @@
 import { dbConnect } from "$lib/models/db";
 import type { Handle } from "@sveltejs/kit";
+import { sequence } from '@sveltejs/kit/hooks';
+import { handleClerk } from 'clerk-sveltekit/server';
+import { CLERK_SECRET_KEY } from '$env/static/private';
 
 // Connect to the database when the server starts.
 dbConnect().catch(err => {
   console.error("Failed to connect to the database:", err);
 });
 
-export const handle: Handle = async ({ event, resolve }) => {
-  return await resolve(event);
-};
+const clerkHandler = handleClerk(CLERK_SECRET_KEY, {
+    debug: true,                  // Enable debug to see more detailed error messages
+    protectedPaths: ['/admin'],   // Specify paths that require user to be authenticated
+    signInUrl: '/sign-in'         // Redirect to this URL if the user is not authenticated
+});
+
+export const handle: Handle = sequence(
+  clerkHandler,
+  async ({ event, resolve }) => {
+    // You can add more middleware here if needed
+    return await resolve(event);
+  }
+);
