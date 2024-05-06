@@ -2,6 +2,7 @@
   "name": "boardbuddy",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
@@ -40,7 +41,6 @@
     "vite": "^5.0.3",
     "vite-plugin-tailwind-purgecss": "0.3.3"
   },
-  "type": "module",
   "dependencies": {
     "@floating-ui/dom": "1.6.4",
     "clerk-sveltekit": "^0.4.2",

@@ -1,7 +1,12 @@
-<script>
+<script lang="ts">
     import SignOutButton from 'clerk-sveltekit/client/SignOutButton.svelte'
+    export let data;
 </script>
 
-<p>You are in buddy</p>
+{#if data.userRole === 'admin'}
+    <p>Welcome admin!</p>
+{:else}
+    <p>You are a buddy</p>
+{/if}
 
 <SignOutButton />

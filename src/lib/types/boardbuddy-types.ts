@@ -1,6 +1,5 @@
 /**
  * Type Definitions
- * 
  *
  * @author Peter Fortune
  * @date 04/05/2024
