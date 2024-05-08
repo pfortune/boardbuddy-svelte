@@ -69,6 +69,16 @@ export const locationStore = {
     }
   },
 
+  async getLocations(userId: string): Promise<Location[]> {
+    try {
+      const locations = await LocationMongoose.find({ userId }).lean<Location[]>();
+      return locations;
+    } catch (error) {
+      console.error("Error fetching locations by user ID:", error);
+      return [];
+    }
+  },
+
   async addLocation(location: Location): Promise<Location | null> {
     const newLocation = new LocationMongoose(location);
     const locationObj = await newLocation.save();

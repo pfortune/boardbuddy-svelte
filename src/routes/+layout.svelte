@@ -11,7 +11,7 @@
 <div class="container mx-auto p-4">
     <SignedIn>
 		<ClerkLoaded let:clerk>
-			<Menu username={clerk?.user?.firstName} />
+			<Menu username={clerk?.user?.firstName || 'Back'} />
 		</ClerkLoaded>
 	</SignedIn>
     <slot />

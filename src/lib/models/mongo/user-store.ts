@@ -41,7 +41,6 @@ export const userStore = {
     user.firstName = updatedUser.firstName;
     user.lastName = updatedUser.lastName;
     user.email = updatedUser.email;
-    user.password = updatedUser.password;
     return await user.save();
   },
 

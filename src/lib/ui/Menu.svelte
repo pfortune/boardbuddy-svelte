@@ -1,7 +1,7 @@
 <script lang="ts">
     import UserButton from 'clerk-sveltekit/client/UserButton.svelte';
 
-    export let username: string = '';
+    export let username: string;
 </script>
 <div class="flex justify-between items-center bg-white shadow-md rounded-lg p-3">
     <nav class="flex-grow">
@@ -15,7 +15,7 @@
 
     <div class="flex items-center">
         <p class="text-blue-600 mr-4">Welcome {username}!</p>
-        <UserButton afterSignOutUrl="/" class="bg-blue-700 hover:bg-blue-800 text-white text-sm px-4 py-2 rounded-lg transition-colors" />
+        <UserButton afterSignOutUrl="/" />
     </div>
 
 </div>

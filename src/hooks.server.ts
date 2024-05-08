@@ -11,7 +11,15 @@ dbConnect().catch(err => {
 
 const clerkHandler = handleClerk(CLERK_SECRET_KEY, {
     debug: true,                  // Enable debug to see more detailed error messages
-    protectedPaths: ['/dashboard', '/profile', '/admin', '/game', '/location'],   // Specify paths that require user to be authenticated
+    protectedPaths: [
+      '/dashboard', 
+      '/profile', 
+      '/admin', 
+      '/game', 
+      '/search',
+      '/location', 
+      '/about'
+    ],   // Specify paths that require user to be authenticated
     signInUrl: '/login'         // Redirect to this URL if the user is not authenticated
 });
 
