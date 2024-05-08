@@ -27,7 +27,7 @@ export interface Location {
   y: number;
   img: string;
   userid: string;
-  games?: Game[]
+  games?: Game[];
 }
 
 export interface Game {
@@ -41,4 +41,3 @@ export interface Game {
   category: string;
   locationid: string;
 }
-

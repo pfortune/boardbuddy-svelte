@@ -1,6 +1,6 @@
 /**
  * Provides a set of asynchronous functions to interact with location data in a MongoDB database.
- * These functions allow you to retrieve all locations, a location by its ID or category, 
+ * These functions allow you to retrieve all locations, a location by its ID or category,
  * add a new location, and delete a location either by its ID or delete all locations.
  * It integrates with a separate `gameMongoStore` to associate games with specific locations.
  *
@@ -12,7 +12,7 @@
  */
 
 import type { Location } from "$lib/types/boardbuddy-types";
-import { LocationMongoose } from './location';
+import { LocationMongoose } from "./location";
 import { gameStore } from "./game-store";
 
 export const locationStore = {
@@ -35,15 +35,13 @@ export const locationStore = {
     if (!id) return null;
     const location = await LocationMongoose.findOne({ _id: id }).lean<Location>();
     if (location) {
-        location.games = await gameStore.getGamesByLocationId(id);
+      location.games = await gameStore.getGamesByLocationId(id);
     }
     return JSON.parse(JSON.stringify(location));
   },
 
   async locationStats(): Promise<{ _id: string; count: number }[]> {
-    return JSON.parse(JSON.stringify(LocationMongoose.aggregate([
-      { $group: { _id: "$category", count: { $sum: 1 } } }
-    ])));
+    return JSON.parse(JSON.stringify(LocationMongoose.aggregate([{ $group: { _id: "$category", count: { $sum: 1 } } }])));
   },
 
   async getLocationCategories(): Promise<string[]> {
@@ -103,5 +101,5 @@ export const locationStore = {
 
   async deleteAllLocations(): Promise<void> {
     await LocationMongoose.deleteMany({});
-  },
+  }
 };

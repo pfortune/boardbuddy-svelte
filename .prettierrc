@@ -1,9 +1,15 @@
 {
-	"useSpaces": true,
-	"doubleQuate": true,
-	"singleQuote": false,
-	"trailingComma": "none",
-	"printWidth": 180,
-	"plugins": ["prettier-plugin-svelte"],
-	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+  "useTabs": false,
+  "singleQuote": false,
+  "trailingComma": "none",
+  "printWidth": 180,
+  "plugins": ["prettier-plugin-svelte"],
+  "overrides": [
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte"
+      }
+    }
+  ]
 }

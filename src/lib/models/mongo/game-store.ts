@@ -31,9 +31,7 @@ export const gameStore = {
   },
 
   async gameCount(): Promise<number> {
-    const result = await GameMongoose.aggregate([
-      { $count: "totalGames" }
-    ]);
+    const result = await GameMongoose.aggregate([{ $count: "totalGames" }]);
     return result.length > 0 ? result[0].totalGames : 0;
   },
 
@@ -58,5 +56,5 @@ export const gameStore = {
 
   async deleteAllGames(): Promise<void> {
     await GameMongoose.deleteMany({});
-  },
+  }
 };

@@ -9,7 +9,7 @@
  */
 
 import type { User } from "$lib/types/boardbuddy-types";
-import { UserMongoose } from './user';
+import { UserMongoose } from "./user";
 
 export const userStore = {
   async getAllUsers(): Promise<User[] | null> {
@@ -19,7 +19,7 @@ export const userStore = {
 
   async getUserById(id: string): Promise<User | null> {
     if (!id) return null;
- 
+
     const user = await UserMongoose.findOne({ _id: id }).lean<User>();
     return user;
   },
