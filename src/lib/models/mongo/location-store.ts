@@ -19,10 +19,12 @@ export const locationStore = {
   async getAllLocations(): Promise<Location[]> {
     try {
       const locations = await LocationMongoose.find().lean<Location[]>();
+
       for (const location of locations) {
-        location.games = await gameStore.getGamesByLocationId(location._id.toString());
+        location._id = location._id.toString();
+        location.games = await gameStore.getGamesByLocationId(location._id);
       }
-      return locations;
+      return JSON.parse(JSON.stringify(locations));
     } catch (error) {
       console.error("Error fetching all locations:", error);
       return [];
@@ -35,19 +37,19 @@ export const locationStore = {
     if (location) {
         location.games = await gameStore.getGamesByLocationId(id);
     }
-    return location;
+    return JSON.parse(JSON.stringify(location));
   },
 
   async locationStats(): Promise<{ _id: string; count: number }[]> {
-    return LocationMongoose.aggregate([
+    return JSON.parse(JSON.stringify(LocationMongoose.aggregate([
       { $group: { _id: "$category", count: { $sum: 1 } } }
-    ]);
+    ])));
   },
 
   async getLocationCategories(): Promise<string[]> {
     try {
       const categories = await LocationMongoose.distinct("category");
-      return categories;
+      return JSON.parse(JSON.stringify(categories));
     } catch (error) {
       console.error("Error fetching location categories:", error);
       return [];

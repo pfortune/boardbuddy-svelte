@@ -1,25 +1,18 @@
 <script lang="ts">
-	import '../app.postcss';
+    import '../app.postcss';
+	import Menu from '$lib/ui/Menu.svelte';
+	import SignedIn from 'clerk-sveltekit/client/SignedIn.svelte';
+	import ClerkLoaded from 'clerk-sveltekit/client/ClerkLoaded.svelte';
 
-	import Heading from "$lib/ui/Heading.svelte";
-  	import Menu from "$lib/ui/Menu.svelte";
-	import UserButton from 'clerk-sveltekit/client/UserButton.svelte'
-	import SignedIn from 'clerk-sveltekit/client/SignedIn.svelte'
+	export let data: any;
+	console.log("+layout.svelte: ", data);
 </script>
 
-<div class="container">
-	<SignedIn>
-    <div class="bg-blue-500 text-white p-2 rounded">
-        <UserButton afterSignOutUrl="/" />
-    </div>
+<div class="container mx-auto p-4">
+    <SignedIn>
+		<ClerkLoaded let:clerk>
+			<Menu username={clerk?.user?.firstName} />
+		</ClerkLoaded>
 	</SignedIn>
-
-	<slot />
+    <slot />
 </div>
-
-
-
-
-
-
-
