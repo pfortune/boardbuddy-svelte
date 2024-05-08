@@ -2,4 +2,4 @@
     export let data: any;
 </script>
 
-<p>{data.user.role}</p>
+<p>{data.user.role ? data.user.role : "User"}</p>

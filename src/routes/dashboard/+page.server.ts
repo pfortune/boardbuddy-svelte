@@ -9,7 +9,6 @@ export const load: PageServerLoad = async ({locals}) => {
 
     console.log("src/dashboard/+page.server.ts: ", user);
 
-    // Initialize locations array
     let locations = [];
 
     // Conditionally fetch locations based on the user's role
