@@ -10,23 +10,14 @@ export interface Session {
   token: string;
 }
 
-export interface User {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  clerkUserId: string;
-  permission: string;
-}
-
 export interface Location {
   _id: string;
   title: string;
   category: string;
   x: number;
   y: number;
-  img: string;
-  userid: string;
+  img?: string;
+  userId: string;
   games?: Game[];
 }
 

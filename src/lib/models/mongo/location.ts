@@ -1,6 +1,6 @@
 /**
  * Location model schema definition.
- * Defines structure for location data including title, category, coordinates, and user association.
+ * Defines structure for location data including title, category, coordinates, user association, and optional image.
  *
  * @module Location
  * @author Peter Fortune
@@ -8,18 +8,16 @@
  * @see Location Model for the structure of location data.
  */
 
-import type { Location } from "$lib/types/boardbuddy-types";
 import mongoose, { Schema, model } from "mongoose";
+import type { Location } from "$lib/types/boardbuddy-types";
 
 const locationSchema = new Schema<Location>({
   title: { type: String, required: true },
   category: { type: String, required: true },
   x: { type: Number, required: true },
   y: { type: Number, required: true },
-  img: String,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  user: { type: Schema.Types.ObjectId, ref: "User" }
+  userId: { type: String, required: true },
+  img: { type: String, default: null }
 });
 
 export const LocationMongoose = mongoose.models.Location || model("Location", locationSchema);
