@@ -4,32 +4,68 @@
   import AddLocation from "./AddLocation.svelte";
   import Card from "$lib/ui/Card.svelte";
 
-  export let data: any;
-  export let locations: any[];
-  $: locations = data.locations;
+  type Data = {
+    locations: Location[];
+  };
+
+  export let data: Data;
+
+  const colours = {
+    bar: 'variant-filled-warning',
+    cafe: 'variant-filled-secondary',
+    restaurant: 'variant-filled-primary',
+    library: 'variant-filled-tertiary',
+    bookstore: 'variant-filled-success'
+  };
+
+  $: locations = data.locations.map((location: Location) => ({
+    ...location,
+    colour: colours[location.category.toLowerCase()] // Correct the property access
+  }));
 </script>
+
 
 <SignedIn>
   <Card title="Locations">
-    <CheckRole user={data.user} role="admin">
-      <h1>All Locations:</h1>
-    </CheckRole>
-
-    <CheckRole user={data.user} role="user">
-      <h1>Locations you have added:</h1>
-    </CheckRole>
-
-    <div class="locations-list">
+    <div class="space-y-4">
       {#each locations as location}
-        <div class="location">
-          <h3>{location.title} ({location.category})</h3>
-          <p>Coordinates: {location.x}, {location.y}</p>
-          <a href={`/location/${location._id}`}>View Details</a>
+        <div class="box bg-white p-4 rounded-lg shadow-md">
+          <div class="flex items-center justify-between">
+            <div class="media-content">
+              <p class="text-lg pb-3 font-semibold">
+                {location.title}
+                <span class="badge {location.colour}"> <!-- Dynamic coloring based on category -->
+                  {location.category}
+                </span>
+              </p>
+              <p>
+                {#if location.x && location.y}
+                  <span class="badge variant-ringed-success px-3 py-1 text-sm"> 
+                    <span class="badge-icon variant-ringed-success mr-2">
+                      <i class="fas fa-map-marker-alt"></i>
+                    </span>
+                    Coords: X: {location.x}, Y: {location.y}
+                  </span>
+                {/if}
+              </p>
+            </div>
+            <div class="media-right flex items-center">
+              <a href={`/location/${location._id}`} class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center mr-2">
+                <span class="icon text-sm">
+                  <i class="fas fa-folder-open"></i>
+                </span>
+              </a>
+              <a href={`/dashboard/delete/${location._id}`} class="button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                <span class="icon text-sm">
+                  <i class="fas fa-trash-alt"></i>
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
       {/each}
     </div>
   </Card>
-
   <Card title="Add Location">
     <AddLocation />
   </Card>

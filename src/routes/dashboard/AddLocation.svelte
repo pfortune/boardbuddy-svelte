@@ -27,7 +27,7 @@
         placeholder="Enter X coordinate"
         bind:value={x}
         name="x"
-        pattern={"^-?([0-9]{1,2}|1[0-7][0-9]|180)(\.[0-9]{1,10})?$"}
+        pattern={"^-?([0-9]{1,2}|1[0-7][0-9]|180)(.[0-9]{1,10})?$"}
         title="Enter a valid longitude."
       />
     </div>
@@ -37,7 +37,7 @@
         placeholder="Enter Y coordinate"
         bind:value={y}
         name="y"
-        pattern={"^-?([0-8]?[0-9]|90)(\.[0-9]{(1, 10)})?"}
+        pattern={"^-?([0-8]?[0-9]|90)(.[0-9]{(1, 10)})?"}
         title="Enter a valid latitude."
       />
     </div>

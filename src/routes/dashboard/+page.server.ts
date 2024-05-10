@@ -2,6 +2,7 @@ import { locationStore } from "$lib/models/mongo/location-store";
 import type { PageServerLoad, Actions, Action } from "./$types";
 
 export const load: PageServerLoad = async ({ locals }) => {
+  
   const user = {
     role: locals.session?.claims.metadata.role
   };

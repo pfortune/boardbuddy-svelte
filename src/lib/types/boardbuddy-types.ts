@@ -4,12 +4,6 @@
  * @author Peter Fortune
  * @date 04/05/2024
  */
-export interface Session {
-  name: string;
-  _id: string;
-  token: string;
-}
-
 export interface Location {
   _id: string;
   title: string;
@@ -17,6 +11,7 @@ export interface Location {
   x: number;
   y: number;
   img?: string;
+  colour?: string;
   userId: string;
   games?: Game[];
 }

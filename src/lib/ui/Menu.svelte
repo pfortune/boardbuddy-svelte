@@ -1,21 +1,26 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import UserButton from "clerk-sveltekit/client/UserButton.svelte";
+  import { AppBar } from "@skeletonlabs/skeleton";
 
   export let username: string;
 </script>
 
-<div class="flex justify-between items-center bg-white shadow-md rounded-lg p-3">
-  <nav class="flex-grow">
-    <ul class="flex justify-start gap-4">
-      <li><a href="/" class="text-blue-600 hover:text-blue-800 transition-colors">Home</a></li>
-      <li><a href="/dashboard" class="text-blue-600 hover:text-blue-800 transition-colors">Dashboard</a></li>
-      <li><a href="/search" class="text-blue-600 hover:text-blue-800 transition-colors">Search</a></li>
-      <li><a href="/about" class="text-blue-600 hover:text-blue-800 transition-colors">About</a></li>
-    </ul>
-  </nav>
+<AppBar gridColumns="grid-cols-[auto_1fr_auto]">
+  <svelte:fragment slot="lead">
+    <nav>
+      <ul class="flex space-x-4">
+        <li><a href="/dashboard" class="btn variant-ghost-{$page.url.pathname === '/dashboard' ? 'tertiary' : 'primary'}">Dashboard</a></li>
+        <li><a href="/search" class="btn variant-ghost-{$page.url.pathname === '/search' ? 'tertiary' : 'primary'}">Search</a></li>
+        <li><a href="/about" class="btn variant-ghost-{$page.url.pathname === '/about' ? 'tertiary' : 'primary'}">About</a></li>
+      </ul>
+    </nav>
+  </svelte:fragment>
 
-  <div class="flex items-center">
-    <p class="text-blue-600 mr-4">Welcome {username}!</p>
-    <UserButton afterSignOutUrl="/" />
-  </div>
-</div>
+  <svelte:fragment slot="trail">
+    <div class="flex">
+      <p class="mr-4">Welcome {username}!</p>
+      <UserButton afterSignOutUrl="/" />
+    </div>
+  </svelte:fragment>
+</AppBar>
