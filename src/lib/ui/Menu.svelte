@@ -20,15 +20,12 @@
     </nav>
   </svelte:fragment>
 
-      
-
   <svelte:fragment slot="trail">
     <div>
       <LightSwitch />
     </div>
 
     <div class="flex">
-      
       <p class="mr-4">Welcome {username}!</p>
       <UserButton afterSignOutUrl="/" />
     </div>
