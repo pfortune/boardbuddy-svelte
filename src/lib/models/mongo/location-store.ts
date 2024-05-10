@@ -7,7 +7,7 @@ export const locationStore = {
     try {
       const locations = await LocationMongoose.find().lean();
       for (const location of locations) {
-        location.games = await gameStore.getGamesByLocationId(location._id.toString());
+        location.games = await gameStore.getGamesByLocationId();
       }
       return JSON.parse(JSON.stringify(locations)); 
     } catch (error) {
@@ -20,7 +20,7 @@ export const locationStore = {
     try {
       const location = await LocationMongoose.findById(id).lean();
       if (location) {
-        location.games = await gameStore.getGamesByLocationId(id);
+        location.games = await gameStore.getGamesByLocationId(location._id);
         return JSON.parse(JSON.stringify(location)); 
       }
       return null;
@@ -34,7 +34,7 @@ export const locationStore = {
     try {
       const locations = await LocationMongoose.find({ userId }).lean();
       for (const location of locations) {
-        location.games = await gameStore.getGamesByLocationId(location._id.toString());
+        location.games = await gameStore.getGamesByLocationId(location._id);
       }
       return JSON.parse(JSON.stringify(locations)); 
     } catch (error) {

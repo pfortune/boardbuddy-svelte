@@ -23,7 +23,5 @@ export interface Game {
   minPlayers: number;
   maxPlayers: number;
   duration: number;
-  description: string;
-  category: string;
   locationid: string;
 }

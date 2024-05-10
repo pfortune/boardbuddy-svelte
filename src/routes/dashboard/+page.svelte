@@ -20,7 +20,7 @@
 
   $: locations = data.locations.map((location: Location) => ({
     ...location,
-    colour: colours[location.category.toLowerCase()] // Correct the property access
+    colour: colours[location.category.toLowerCase()]
   }));
 </script>
 
@@ -34,7 +34,7 @@
               <p class="text-lg pb-3 font-semibold">
                 {location.title}
                 <span class="badge {location.colour}">
-                  <!-- Dynamic coloring based on category -->
+                  <!-- Dynamic colouring based on category -->
                   {location.category}
                 </span>
               </p>

@@ -26,8 +26,8 @@ export const gameStore = {
     return this.getGameById(gameObj._id);
   },
 
-  async getGamesByLocationId(locationId: string): Promise<Game[]> {
-    return GameMongoose.find({ locationid: locationId }).lean<Game[]>();
+  async getGamesByLocationId(locationId): Promise<Game[]> {
+      return await GameMongoose.find({locationid: locationId}).lean();
   },
 
   async gameCount(): Promise<number> {

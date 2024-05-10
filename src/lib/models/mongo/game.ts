@@ -15,11 +15,9 @@ const gameSchema = new Schema<Game>({
   minPlayers: { type: Number, required: true },
   maxPlayers: { type: Number, required: true },
   duration: { type: Number, required: true },
-  description: { type: String, required: true },
-  category: { type: String, required: true },
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
-  location: {
+  locationid: {
     type: Schema.Types.ObjectId,
     ref: "Location",
     required: true
