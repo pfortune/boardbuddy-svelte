@@ -11,11 +11,11 @@
   export let data: Data;
 
   const colours = {
-    bar: 'variant-filled-warning',
-    cafe: 'variant-filled-secondary',
-    restaurant: 'variant-filled-primary',
-    library: 'variant-filled-tertiary',
-    bookstore: 'variant-filled-success'
+    bar: 'variant-soft-warning',
+    cafe: 'variant-soft-secondary',
+    restaurant: 'variant-soft-primary',
+    library: 'variant-soft-tertiary',
+    bookstore: 'variant-soft-success'
   };
 
   $: locations = data.locations.map((location: Location) => ({
@@ -29,7 +29,7 @@
   <Card title="Locations">
     <div class="space-y-4">
       {#each locations as location}
-        <div class="box bg-white p-4 rounded-lg shadow-md">
+        <div class="box variant-ghost-surface p-4 rounded-lg shadow-md">
           <div class="flex items-center justify-between">
             <div class="media-content">
               <p class="text-lg pb-3 font-semibold">
@@ -40,8 +40,8 @@
               </p>
               <p>
                 {#if location.x && location.y}
-                  <span class="badge variant-ringed-success px-3 py-1 text-sm"> 
-                    <span class="badge-icon variant-ringed-success mr-2">
+                  <span class="badge variant-soft-primary px-3 py-1 text-sm"> 
+                    <span class="badge-icon variant-ringed-primary mr-2">
                       <i class="fas fa-map-marker-alt"></i>
                     </span>
                     Coords: X: {location.x}, Y: {location.y}
@@ -50,12 +50,12 @@
               </p>
             </div>
             <div class="media-right flex items-center">
-              <a href={`/location/${location._id}`} class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center mr-2">
+              <a href={`/location/${location._id}`} class="btn variant-filled-primary py-2 px-4 rounded inline-flex items-center mr-2">
                 <span class="icon text-sm">
                   <i class="fas fa-folder-open"></i>
                 </span>
               </a>
-              <a href={`/dashboard/delete/${location._id}`} class="button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+              <a href={`/dashboard/delete/${location._id}`} class="btn variant-filled-error py-2 px-4 rounded inline-flex items-center">
                 <span class="icon text-sm">
                   <i class="fas fa-trash-alt"></i>
                 </span>

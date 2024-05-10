@@ -1,36 +1,32 @@
-import { fontFamily } from "tailwindcss/defaultTheme";
-import forms from "@tailwindcss/forms";
-import { skeleton } from '@skeletonlabs/tw-plugin';
-import { join } from 'path';
-import type { Config } from 'tailwindcss';
+import { join } from 'path'
+import type { Config } from 'tailwindcss'
+import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography';
+import { skeleton } from '@skeletonlabs/tw-plugin'
 
-const config: Config = {
-	darkMode: ["class"],
-	content: [
-		'./src/**/*.{html,js,svelte,ts}',
-		join(require.resolve(
-			'@skeletonlabs/skeleton'),
-			'../**/*.{html,js,svelte,ts}'
-		)],
-	safelist: ["dark"],
-	plugins: [forms,
-		skeleton({
-			themes: { preset: [ 
-						"rocket", 
-						"modern", 
-						"vintage", 
-						"skeleton", 
-						"wintry",
-						"sahara",
-						"crimson",
-						"seafoam",
-						"hamlindigo",
-					] }
-		})
-	],
+export default {
+	darkMode: 'selector',
+	content: ['./src/**/*.{html,js,svelte,ts}', join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')],
 	theme: {
-		extend: {}
+		extend: {},
 	},
-};
-
-export default config;
+	plugins: [
+		forms,
+		typography,
+		skeleton({
+			themes: {
+				preset: [
+					{ name: "rocket",  enhancements: true},
+					{ name: "modern",   enhancements: true},
+					{ name: "vintage",   enhancements: true},
+					{ name: "skeleton",   enhancements: true},
+					{ name: "wintry",  enhancements: true},
+					{ name: "sahara",  enhancements: true},
+					{ name: "crimson",  enhancements: true},
+					{ name: "seafoam",  enhancements: true},
+					{ name: "hamlindigo",  enhancements: true}
+				],
+			},
+		}),
+	], 
+} satisfies Config;
