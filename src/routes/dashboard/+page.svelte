@@ -11,11 +11,11 @@
   export let data: Data;
 
   const colours = {
-    bar: 'variant-soft-warning',
-    cafe: 'variant-soft-secondary',
-    restaurant: 'variant-soft-primary',
-    library: 'variant-soft-tertiary',
-    bookstore: 'variant-soft-success'
+    bar: "variant-soft-warning",
+    cafe: "variant-soft-secondary",
+    restaurant: "variant-soft-primary",
+    library: "variant-soft-tertiary",
+    bookstore: "variant-soft-success"
   };
 
   $: locations = data.locations.map((location: Location) => ({
@@ -23,7 +23,6 @@
     colour: colours[location.category.toLowerCase()] // Correct the property access
   }));
 </script>
-
 
 <SignedIn>
   <Card title="Locations">
@@ -34,13 +33,14 @@
             <div class="media-content">
               <p class="text-lg pb-3 font-semibold">
                 {location.title}
-                <span class="badge {location.colour}"> <!-- Dynamic coloring based on category -->
+                <span class="badge {location.colour}">
+                  <!-- Dynamic coloring based on category -->
                   {location.category}
                 </span>
               </p>
               <p>
                 {#if location.x && location.y}
-                  <span class="badge variant-soft-primary px-3 py-1 text-sm"> 
+                  <span class="badge variant-soft-primary px-3 py-1 text-sm">
                     <span class="badge-icon variant-ringed-primary mr-2">
                       <i class="fas fa-map-marker-alt"></i>
                     </span>
@@ -55,11 +55,14 @@
                   <i class="fas fa-folder-open"></i>
                 </span>
               </a>
-              <a href={`/dashboard/delete/${location._id}`} class="btn variant-filled-error py-2 px-4 rounded inline-flex items-center">
-                <span class="icon text-sm">
-                  <i class="fas fa-trash-alt"></i>
-                </span>
-              </a>
+              <form action={`?/delete`} method="POST">
+                <input type="hidden" name="id" value={location._id}>
+                <button type="submit" class="btn variant-filled-error py-2 px-4 rounded inline-flex items-center">
+                  <span class="icon text-sm">
+                    <i class="fas fa-trash-alt"></i>
+                  </span>
+                </button>
+              </form>
             </div>
           </div>
         </div>

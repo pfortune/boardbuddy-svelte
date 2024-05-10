@@ -55,5 +55,21 @@ export const actions: Actions = {
       console.error("Error adding location:", error);
       return { status: 500, errors: { message: "Internal server error" } };
     }
+  },
+  delete: async ({ request, locals }): Promise<Action> => {
+    const formData = await request.formData();
+    const id = formData.get('id');
+
+    if (!id) {
+      return { status: 400, errors: { message: "Location ID is missing" } };
+    }
+
+    try {
+      await locationStore.deleteLocationById(id.toString());
+      return { status: 303, headers: { Location: '/dashboard' } }; // Redirect after delete
+    } catch (error) {
+      console.error("Error deleting location:", error);
+      return { status: 500, errors: { message: "Failed to delete location" } };
+    }
   }
 };

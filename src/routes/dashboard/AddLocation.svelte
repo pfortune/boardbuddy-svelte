@@ -42,5 +42,5 @@
       />
     </div>
   </div>
-  <Button text="Add Location" color="blue" fullWidth={true} />
+  <Button text="Add Location" fullWidth={true} />
 </form>

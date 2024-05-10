@@ -1,5 +1,8 @@
 <script lang="ts">
-  export let data: any;
+  import Card from "$lib/ui/Card.svelte";
 </script>
 
-<p>{data.user.role ? data.user.role : "User"}</p>
+<Card title="Search">
+  
+</Card>
+  
