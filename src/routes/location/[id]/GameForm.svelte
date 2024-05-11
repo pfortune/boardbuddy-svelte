@@ -1,7 +1,5 @@
 <script lang="ts">
-    import { enhance } from "$app/forms";
-    import TextInput from "$lib/ui/Form/TextInput.svelte";
-    import Button from "$lib/ui/Form/Button.svelte";
+    import { TextInput, Button, Form } from "$lib/ui/forms";
   
     let title: string = "";
     let age: string = "";
@@ -10,7 +8,7 @@
     let maxPlayers: string = "";
   </script>
   
-  <form action="?/add" method="POST" use:enhance>
+  <Form action="?/add">
     <TextInput label="Game Title" placeholder="Enter Game Title" bind:value={title} name="title" icon="fas fa-map-marker-alt" />
     <div class="flex space-x-4 mb-4">
       <div class="flex-1">
@@ -58,5 +56,5 @@
       </div>
     </div>
     <Button text="Add Game" fullWidth={true} />
-  </form>
+  </Form>
   

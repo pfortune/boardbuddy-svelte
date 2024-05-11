@@ -14,6 +14,7 @@ export interface Location {
   colour?: string;
   userId: string;
   games?: Game[];
+  createdAt?: Date;
 }
 
 export interface Game {
@@ -24,4 +25,13 @@ export interface Game {
   maxPlayers: number;
   duration: number;
   locationid: string;
+  createdAt?: Date;
+}
+
+export interface Image {
+  _id: string;
+  imgUrl: string;
+  userId: string;
+  locationid: string;
+  createdAt?: Date;
 }

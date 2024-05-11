@@ -7,7 +7,7 @@ export const locationStore = {
     try {
       const locations = await LocationMongoose.find().lean();
       for (const location of locations) {
-        location.games = await gameStore.getGamesByLocationId();
+        location.games = await gameStore.getGamesByLocationId(location._id);
       }
       return JSON.parse(JSON.stringify(locations)); 
     } catch (error) {

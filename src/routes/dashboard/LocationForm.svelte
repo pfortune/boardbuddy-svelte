@@ -1,8 +1,5 @@
 <script lang="ts">
-  import { enhance } from "$app/forms";
-  import TextInput from "$lib/ui/Form/TextInput.svelte";
-  import SelectInput from "$lib/ui/Form/SelectInput.svelte";
-  import Button from "$lib/ui/Form/Button.svelte";
+  import { Form, TextInput, Button, SelectInput } from "$lib/ui/forms";
 
   let title: string = "";
   let category: string = "";
@@ -17,7 +14,7 @@
   ];
 </script>
 
-<form action="?/add" method="POST" use:enhance>
+<Form action="?/add">
   <TextInput label="Location Title" placeholder="Enter location title" bind:value={title} name="title" icon="fas fa-map-marker-alt" />
   <SelectInput label="Category" bind:selected={category} options={categories} name="category" icon="fas fa-layer-group" />
   <div class="flex space-x-4 mb-4">
@@ -43,4 +40,4 @@
     </div>
   </div>
   <Button text="Add Location" fullWidth={true} />
-</form>
+</Form>

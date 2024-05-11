@@ -1,7 +1,7 @@
 <script lang="ts">
+  import { Form } from "$lib/ui/forms";
   import SignedIn from "clerk-sveltekit/client/SignedIn.svelte";
-  import CheckRole from "$lib/ui/CheckRole.svelte";
-  import AddLocation from "./AddLocation.svelte";
+  import LocationForm from "./LocationForm.svelte";
   import Card from "$lib/ui/Card.svelte";
 
   type Data = {
@@ -55,14 +55,14 @@
                   <i class="fas fa-folder-open"></i>
                 </span>
               </a>
-              <form action={`?/delete`} method="POST">
+              <Form action="?/delete">
                 <input type="hidden" name="id" value={location._id}>
                 <button type="submit" class="btn variant-filled-error py-2 px-4 rounded inline-flex items-center">
                   <span class="icon text-sm">
                     <i class="fas fa-trash-alt"></i>
                   </span>
                 </button>
-              </form>
+              </Form>
             </div>
           </div>
         </div>
@@ -70,6 +70,6 @@
     </div>
   </Card>
   <Card title="Add Location">
-    <AddLocation />
+    <LocationForm />
   </Card>
 </SignedIn>
