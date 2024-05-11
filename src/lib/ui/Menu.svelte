@@ -15,6 +15,7 @@
       <ul class="flex space-x-4">
         <li><a href="/dashboard" class="btn variant-{$page.url.pathname === '/dashboard' ? active : notActive}">Dashboard</a></li>
         <li><a href="/search" class="btn variant-{$page.url.pathname === '/search' ? active : notActive}">Search</a></li>
+        <li><a href="/gallery" class="btn variant-{$page.url.pathname === '/gallery' ? active : notActive}">Gallery</a></li>
         <li><a href="/about" class="btn variant-{$page.url.pathname === '/about' ? active : notActive}">About</a></li>
       </ul>
     </nav>

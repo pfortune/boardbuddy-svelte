@@ -15,7 +15,8 @@ import { serialize } from "$lib/util";
 
 export const imageStore = {
     async getAllImages(): Promise<Image[]> {
-        return ImageMongoose.find().lean<Image[]>();
+        const images = await ImageMongoose.find().lean<Image[]>();
+        return serialize(images);
     },
 
     async addImages(locationId: string, userId: string, imageUrls: string[]): Promise<Image[]> {

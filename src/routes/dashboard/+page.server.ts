@@ -31,7 +31,6 @@ export const actions: Actions = {
       const y = parseFloat(formData.get('y')?.toString() || '0');
       const userId = locals.session?.userId;
 
-      console.log("Received userId:", userId);  
 
       if (!title || !category || !userId) {
         return { status: 400, errors: { message: "Required fields are missing" } };

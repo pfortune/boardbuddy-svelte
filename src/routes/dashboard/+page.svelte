@@ -2,7 +2,7 @@
   import { Form } from "$lib/ui/forms";
   import SignedIn from "clerk-sveltekit/client/SignedIn.svelte";
   import LocationForm from "./LocationForm.svelte";
-  import Card from "$lib/ui/Card.svelte";
+  import { Card } from "$lib/ui";
 
   type Data = {
     locations: Location[];
@@ -56,7 +56,7 @@
                 </span>
               </a>
               <Form action="?/delete">
-                <input type="hidden" name="id" value={location._id}>
+                <input type="hidden" name="id" value={location._id} />
                 <button type="submit" class="btn variant-filled-error py-2 px-4 rounded inline-flex items-center">
                   <span class="icon text-sm">
                     <i class="fas fa-trash-alt"></i>

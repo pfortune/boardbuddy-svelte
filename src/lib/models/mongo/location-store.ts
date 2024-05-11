@@ -1,7 +1,7 @@
 import type { Location } from "$lib/types/boardbuddy-types";
 import { LocationMongoose } from "./location";
 import { gameStore } from "./game-store";
-import { serialize } from "$lib/util/";
+import { serialize } from "$lib/util";
 
 export const locationStore = {
   async getAllLocations(): Promise<Location[]> {

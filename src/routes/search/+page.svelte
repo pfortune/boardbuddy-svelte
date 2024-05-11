@@ -1,8 +1,5 @@
 <script lang="ts">
-  import Card from "$lib/ui/Card.svelte";
+  import { Card } from "$lib/ui";
 </script>
 
-<Card title="Search">
-  
-</Card>
-  
+<Card title="Search"></Card>
