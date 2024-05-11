@@ -11,6 +11,7 @@
 
 import type { Image } from "$lib/types/boardbuddy-types";
 import { ImageMongoose } from "./image";
+import { serialize } from "$lib/util";
 
 export const imageStore = {
     async getAllImages(): Promise<Image[]> {
@@ -26,11 +27,11 @@ export const imageStore = {
 
         const result = await ImageMongoose.insertMany(images);
 
-        return JSON.parse(JSON.stringify(result));
+        return serialize(result);
     },
 
     async getImagesByLocationId(locationId: string): Promise<Image[]> {
         const images = await ImageMongoose.find({ locationid: locationId }).lean();
-        return JSON.parse(JSON.stringify(images));
+        return serialize(images);
     },
 };

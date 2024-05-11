@@ -1,6 +1,7 @@
 import type { Location } from "$lib/types/boardbuddy-types";
 import { LocationMongoose } from "./location";
 import { gameStore } from "./game-store";
+import { serialize } from "$lib/util/";
 
 export const locationStore = {
   async getAllLocations(): Promise<Location[]> {
@@ -9,7 +10,7 @@ export const locationStore = {
       for (const location of locations) {
         location.games = await gameStore.getGamesByLocationId(location._id);
       }
-      return JSON.parse(JSON.stringify(locations)); 
+      return serialize(locations); 
     } catch (error) {
       console.error("Error fetching all locations:", error);
       return [];
@@ -21,7 +22,7 @@ export const locationStore = {
       const location = await LocationMongoose.findById(id).lean();
       if (location) {
         location.games = await gameStore.getGamesByLocationId(location._id);
-        return JSON.parse(JSON.stringify(location)); 
+        return serialize(location); 
       }
       return null;
     } catch (error) {
@@ -36,7 +37,7 @@ export const locationStore = {
       for (const location of locations) {
         location.games = await gameStore.getGamesByLocationId(location._id);
       }
-      return JSON.parse(JSON.stringify(locations)); 
+      return serialize(locations); 
     } catch (error) {
       console.error("Error fetching locations by user ID:", error);
       return [];
@@ -46,7 +47,7 @@ export const locationStore = {
   async getLocationCategories(): Promise<string[]> {
     try {
       const categories = await LocationMongoose.distinct("category");
-      return JSON.parse(JSON.stringify(categories));
+      return serialize(categories);
     } catch (error) {
       console.error("Error fetching location categories:", error);
       return [];
