@@ -10,7 +10,6 @@ export interface Location {
   category: string;
   x: number;
   y: number;
-  img?: string;
   colour?: string;
   userId: string;
   games?: Game[];

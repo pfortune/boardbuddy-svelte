@@ -16,8 +16,7 @@ const locationSchema = new Schema<Location>({
   category: { type: String, required: true },
   x: { type: Number, required: true },
   y: { type: Number, required: true },
-  userId: { type: String, required: true },
-  img: { type: String, default: null }
+  userId: { type: String, required: true }
 });
 
 export const LocationMongoose = mongoose.models.Location || model("Location", locationSchema);

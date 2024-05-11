@@ -1,0 +1,36 @@
+/**
+ * Handles CRUD operations for Image data in MongoDB.
+ * Includes functionality for adding, retrieving, updating, and deleting images,
+ * with special handling for association to locations.
+ *
+ * @module imageStore
+ * @author Peter Fortune
+ * @date 11/05/2024
+ * @see Image Model for image data structure and associations.
+ */
+
+import type { Image } from "$lib/types/boardbuddy-types";
+import { ImageMongoose } from "./image";
+
+export const imageStore = {
+    async getAllImages(): Promise<Image[]> {
+        return ImageMongoose.find().lean<Image[]>();
+    },
+
+    async addImages(locationId: string, userId: string, imageUrls: string[]): Promise<Image[]> {
+        const images = imageUrls.map((imgUrl) => ({
+            imgUrl,
+            userId,
+            locationid: locationId
+        }));
+
+        const result = await ImageMongoose.insertMany(images);
+
+        return JSON.parse(JSON.stringify(result));
+    },
+
+    async getImagesByLocationId(locationId: string): Promise<Image[]> {
+        const images = await ImageMongoose.find({ locationid: locationId }).lean();
+        return JSON.parse(JSON.stringify(images));
+    },
+};

@@ -1,37 +1,47 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, createEventDispatcher } from "svelte";
 
   let widget: { open: () => void };
+  let imageUrls: string[] = [];
+  let dispatch = createEventDispatcher();
 
   onMount(() => {
     const cloudinaryName = import.meta.env.VITE_CLOUDINARY_NAME;
-    const uploadPreset = 'boardbuddy'; // Assuming this is a static value or perhaps also an env var
+    const uploadPreset = "boardbuddy";
 
     if ("cloudinary" in window) {
       widget = window.cloudinary.createUploadWidget(
         {
           cloudName: cloudinaryName,
-          uploadPreset: uploadPreset
+          uploadPreset: uploadPreset,
+          sources: ['local', 'url', 'camera'],
         },
-        (error: any, result: any) => {
+        (error: Error | null, result: any) => {
           if (error) {
-            console.error('Upload Error:', error);
-          } else {
-            console.log('Upload Result:', result);
+            console.error("Error during upload:", error);
+            dispatch("uploadError", { error: error.message });
+            return;
+          }
+          if (result.event === "queues-end" && result.info.files) {
+            imageUrls = result.info.files
+              .filter(file => file.status === 'success')
+              .map(file => file.uploadInfo.secure_url);
+            dispatch("uploadSuccess", { urls: imageUrls });
           }
         }
       );
-      console.log('Widget initialized:', widget);
     } else {
-      console.error('Cloudinary script not loaded in window');
+      console.error("Cloudinary script not loaded in window");
+      dispatch("loadError", { error: "Cloudinary script not loaded" });
     }
   });
 
   function handleClick() {
-    if (widget && typeof widget.open === 'function') {
+    if (widget && typeof widget.open === "function") {
       widget.open();
     } else {
-      console.error('Widget not initialized or open not a function');
+      console.error("Widget not initialised or open not a function");
+      dispatch("widgetError", { error: "Widget not initialised or cannot open" });
     }
   }
 </script>
