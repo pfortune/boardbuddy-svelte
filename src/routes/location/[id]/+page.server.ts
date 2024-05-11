@@ -1,4 +1,4 @@
-import { error, redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import { locationStore } from '$lib/models/mongo/location-store';
 import { gameStore } from '$lib/models/mongo/game-store';
 

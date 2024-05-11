@@ -2,6 +2,7 @@
   import type { PageData } from "./$types";
   import Card from "$lib/ui/Card.svelte";
   import GameForm from "./GameForm.svelte";
+  import UploadWidget from "$lib/ui/UploadWidget.svelte";
 
   export let data: PageData;
 
@@ -21,6 +22,7 @@
       {#if location.img}
         <img src={location.img} alt="" />
       {/if}
+      <UploadWidget />
     </Card>
   </div>
 </div>
