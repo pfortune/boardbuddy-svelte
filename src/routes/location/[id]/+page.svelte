@@ -1,15 +1,16 @@
 <script lang="ts">
+  import GameTable from './GameTable.svelte';
+
   import type { PageData } from "./$types";
   import { enhance } from "$app/forms";
   import { Card, Carousel, UploadWidget } from "$lib/ui";
-  import { Form, Button } from "$lib/ui/forms";
   import GameForm from "./GameForm.svelte";
 
   export let data: PageData;
 
-  let formElement;
+  let formElement: HTMLFormElement;
 
-  export function handleUpload(event) {
+  export function handleUpload(event: CustomEvent) {
     formElement.imageUrls.value = JSON.stringify(event.detail.urls);
     formElement.requestSubmit();
   }
@@ -25,50 +26,7 @@
 <div class="flex space-x-4 mb-4">
   <div class="flex-1">
     <Card title={location.title}>
-      <div class="table-container rounded-none">
-        <table class="table table-hover rounded-none">
-          <thead>
-            <tr>
-              <th class="text-xs uppercase whitespace-nowrap">
-                <i class="fas fa-dice"></i> Game
-              </th>
-              <th class="text-xs uppercase whitespace-nowrap">
-                <i class="fas fa-users"></i> Players
-              </th>
-              <th class="text-xs uppercase whitespace-nowrap">
-                <i class="fas fa-clock"></i> Playing Time
-              </th>
-              <th class="text-xs uppercase whitespace-nowrap">
-                <i class="fas fa-child"></i> Age
-              </th>
-              <th class="text-xs uppercase whitespace-nowrap"> Actions </th>
-            </tr>
-          </thead>
-          <tbody>
-            {#each location.games as game}
-              <tr>
-                <td>
-                  {game.title}
-                </td>
-                <td>
-                  {game.minPlayers} - {game.maxPlayers}
-                </td>
-                <td>
-                  {game.duration} minutes
-                </td>
-                <td>
-                  {game.age}+
-                </td>
-                <td>
-                  <Form action="?/delete-game" hiddenName="id" hiddenValue={game._id}>
-                    <Button text="" icon="fas fa-trash-alt" colour="variant-filled-error" fullWidth={false} />
-                  </Form>
-                </td>
-              </tr>
-            {/each}
-          </tbody>
-        </table>
-      </div>
+      <GameTable games={location.games}/>
     </Card>
   </div>
   <div class="flex-1">
