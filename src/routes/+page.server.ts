@@ -1,4 +1,5 @@
 import type { PageServerLoad } from "./$types";
+import { redirect } from "@sveltejs/kit";
 
 export const load: PageServerLoad = ({ locals }) => {
   const user = {
@@ -6,8 +7,6 @@ export const load: PageServerLoad = ({ locals }) => {
     firstName: locals.session?.claims.first_name,
     role: locals.session?.claims.metadata.role
   };
-
-  console.log("src/+page.server.ts: ", user);
 
   return {
     user

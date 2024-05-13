@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Form } from "$lib/ui/forms";
+  import { Form, Button } from "$lib/ui/forms";
   import SignedIn from "clerk-sveltekit/client/SignedIn.svelte";
   import LocationForm from "./LocationForm.svelte";
   import { Card } from "$lib/ui";
@@ -55,13 +55,8 @@
                   <i class="fas fa-folder-open"></i>
                 </span>
               </a>
-              <Form action="?/delete">
-                <input type="hidden" name="id" value={location._id} />
-                <button type="submit" class="btn variant-filled-error py-2 px-4 rounded inline-flex items-center">
-                  <span class="icon text-sm">
-                    <i class="fas fa-trash-alt"></i>
-                  </span>
-                </button>
+              <Form action="?/delete" hiddenName="id" hiddenValue={location._id}>
+                <Button text="" icon="fas fa-trash-alt" colour="variant-filled-error" fullWidth={false} />
               </Form>
             </div>
           </div>

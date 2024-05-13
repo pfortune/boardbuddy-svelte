@@ -1,8 +1,6 @@
 <script lang="ts">
   import SignedOut from "clerk-sveltekit/client/SignedOut.svelte";
   import SignedIn from "clerk-sveltekit/client/SignedIn.svelte";
-  import { goto } from "$app/navigation";
-
 </script>
 
 <SignedOut>
@@ -28,5 +26,5 @@
 </SignedOut>
 
 <SignedIn>
-  {goto("/dashboard")}
+  
 </SignedIn>

@@ -2,7 +2,7 @@
   import type { PageData } from "./$types";
   import { enhance } from "$app/forms";
   import { Card, Carousel, UploadWidget } from "$lib/ui";
-  import { Form } from "$lib/ui/forms";
+  import { Form, Button } from "$lib/ui/forms";
   import GameForm from "./GameForm.svelte";
 
   export let data: PageData;
@@ -60,11 +60,8 @@
                   {game.age}+
                 </td>
                 <td>
-                  <Form action="?/delete-game">
-                    <input type="hidden" name="id" value={game._id} />
-                    <button type="submit" class="btn variant-filled-error rounded inline-flex items-center">
-                      <i class="fas fa-trash-alt"></i>
-                    </button>
+                  <Form action="?/delete-game" hiddenName="id" hiddenValue={game._id}>
+                    <Button text="" icon="fas fa-trash-alt" colour="variant-filled-error" fullWidth={false} />
                   </Form>
                 </td>
               </tr>
