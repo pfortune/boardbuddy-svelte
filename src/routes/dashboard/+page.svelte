@@ -2,7 +2,7 @@
   import { Form, Button } from "$lib/ui/forms";
   import SignedIn from "clerk-sveltekit/client/SignedIn.svelte";
   import LocationForm from "./LocationForm.svelte";
-  import { Card } from "$lib/ui";
+  import { Card, Badge } from "$lib/ui";
 
   type Data = {
     locations: Location[];
@@ -33,19 +33,15 @@
             <div class="media-content">
               <p class="text-lg pb-3 font-semibold">
                 {location.title}
-                <span class="badge {location.colour}">
-                  <!-- Dynamic colouring based on category -->
+                <Badge colour={location.colour}>
                   {location.category}
-                </span>
+                </Badge>
               </p>
               <p>
                 {#if location.x && location.y}
-                  <span class="badge variant-soft-primary px-3 py-1 text-sm">
-                    <span class="badge-icon variant-ringed-primary mr-2">
-                      <i class="fas fa-map-marker-alt"></i>
-                    </span>
+                  <Badge icon="fa-map-marker-alt">
                     Coords: X: {location.x}, Y: {location.y}
-                  </span>
+                  </Badge>
                 {/if}
               </p>
             </div>

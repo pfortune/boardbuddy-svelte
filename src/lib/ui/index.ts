@@ -7,3 +7,4 @@ export { default as Menu } from './Menu.svelte';
 export { default as SplashScreen } from './SplashScreen.svelte';
 export { default as UploadWidget } from './UploadWidget.svelte';
 export { default as Gallery } from './Gallery.svelte';
+export { default as Badge } from './Badge.svelte';
