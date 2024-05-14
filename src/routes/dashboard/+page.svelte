@@ -3,6 +3,7 @@
   import SignedIn from "clerk-sveltekit/client/SignedIn.svelte";
   import LocationForm from "./LocationForm.svelte";
   import { Card, Badge, CheckRole } from "$lib/ui";
+  import { toTitleCase } from "$lib/util";
   import { Accordion, AccordionItem } from "@skeletonlabs/skeleton";
   import LeafletMap from "$lib/ui/Leaflet.svelte";
   import type { Location } from "$lib/types/boardbuddy-types";
@@ -15,11 +16,11 @@
   export let data: Data;
 
   const colours = {
-    Bar: "variant-soft-warning",
-    Cafe: "variant-soft-secondary",
-    Restaurant: "variant-soft-primary",
-    Library: "variant-soft-tertiary",
-    Bookstore: "variant-soft-success"
+    bar: "variant-soft-warning",
+    cafe: "variant-soft-secondary",
+    restaurant: "variant-soft-primary",
+    library: "variant-soft-tertiary",
+    bookstore: "variant-soft-success"
   };
 
   $: locations = data.locations.map((location: Location) => ({
@@ -54,7 +55,7 @@
                 {location.title} ({location.games.length}
                 {location.games.length === 1 ? "Game" : "Games"})
               </span>
-              <Badge colour={location.colour}>{location.category}</Badge>
+              <Badge colour={location.colour}>{toTitleCase(location.category)}</Badge>
             </div>
           </svelte:fragment>
           <svelte:fragment slot="content">
