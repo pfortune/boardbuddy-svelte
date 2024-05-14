@@ -43,7 +43,7 @@ onMount(async () => {
         }
         const marker = leaflet.marker([loc.x, loc.y]);
         const popup = leaflet.popup({ autoClose: false, closeOnClick: false });
-        popup.setContent(`<b>${loc.title}</b><br>${loc.category}`);
+        popup.setContent(`<b>${loc.title}</b><br>${loc.category}<br><a href="/location/${loc._id}">View Location</a>`);
         marker.bindPopup(popup);
         categoryLayers[loc.category].addLayer(marker);
       });
@@ -59,9 +59,6 @@ onMount(async () => {
       locations.forEach((loc) => {
         const marker = leaflet.marker([loc.x, loc.y]);
         marker.addTo(imap);
-        const popup = leaflet.popup({ autoClose: false, closeOnClick: false });
-        popup.setContent(`<b>${loc.title}</b><br>${loc.category}`);
-        marker.bindPopup(popup);
       });
     }
   }

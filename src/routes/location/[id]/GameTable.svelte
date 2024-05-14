@@ -2,6 +2,7 @@
   import { Form, Button } from "$lib/ui/forms";
   import type { Game } from "$lib/types/boardbuddy-types";
   export let games: Game[] = [];
+  console.log("Games tables data: ", games)
 </script>
 
 <div class="table-container rounded-none">
@@ -31,7 +32,7 @@
           <td>{game.duration} minutes</td>
           <td>{game.age}+</td>
           <td>
-            <Form action="?/delete-game" hiddenName="id" hiddenValue={game._id}>
+            <Form action="?/delete_game" hiddenName="id" hiddenValue={game._id}>
               <Button text="" icon="fas fa-trash-alt" colour="variant-filled-error" fullWidth={false} />
             </Form>
           </td>

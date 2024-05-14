@@ -76,5 +76,22 @@ export const actions: Actions = {
           console.error("Error adding images:", err);
           return { status: 500, errors: { message: "Internal server error" } };
       }
-  }
+    },
+    delete_game: async({ request, params }) => {
+      const formData = await request.formData();
+      
+      const gameToDelete = formData.get('id');
+      console.log("Deleting game:", gameToDelete);
+      if (!gameToDelete) {
+        return { status: 400, errors: { message: "Game ID is missing" } };
+      }
+  
+      try {
+        await gameStore.deleteGame(gameToDelete.toString());
+        return { status: 303, headers: { Location: '/dashboard' } }; // Redirect after delete
+      } catch (error) {
+        console.error("Error deleting game:", error);
+        return { status: 500, errors: { message: "Failed to delete game" } };
+      }
+    }
   };

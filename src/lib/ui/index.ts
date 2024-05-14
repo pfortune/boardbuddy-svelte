@@ -4,7 +4,6 @@ export { default as CheckRole } from './CheckRole.svelte';
 export { default as Heading } from './Heading.svelte';
 export { default as LeafletMap } from './Leaflet.svelte';
 export { default as Menu } from './Menu.svelte';
-export { default as SplashScreen } from '../../routes/home/SplashScreen.svelte';
 export { default as UploadWidget } from './UploadWidget.svelte';
 export { default as Gallery } from './Gallery.svelte';
 export { default as Badge } from './Badge.svelte';

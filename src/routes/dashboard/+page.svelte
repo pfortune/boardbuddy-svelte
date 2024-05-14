@@ -5,22 +5,21 @@
   import { Card, Badge, CheckRole } from "$lib/ui";
   import { Accordion, AccordionItem } from "@skeletonlabs/skeleton";
   import LeafletMap from "$lib/ui/Leaflet.svelte";
+  import type { Location } from "$lib/types/boardbuddy-types";
 
   type Data = {
     locations: Location[];
-    user;
+    user: any;
   };
 
   export let data: Data;
 
-  console.log(data)
-
   const colours = {
-    bar: "variant-soft-warning",
-    cafe: "variant-soft-secondary",
-    restaurant: "variant-soft-primary",
-    library: "variant-soft-tertiary",
-    bookstore: "variant-soft-success"
+    Bar: "variant-soft-warning",
+    Cafe: "variant-soft-secondary",
+    Restaurant: "variant-soft-primary",
+    Library: "variant-soft-tertiary",
+    Bookstore: "variant-soft-success"
   };
 
   $: locations = data.locations.map((location: Location) => ({
@@ -31,17 +30,17 @@
 
 <SignedIn>
   <Card title="Locations">
-    <CheckRole role="admin" user={data.user}>
-      <p class="text-xl font-semibold mb-4">
-        All locations that have been added:
-      </p>
-    </CheckRole>
+    {#if locations.length === 0}
+      <p>No locations yet.</p>
+    {:else}
+      <CheckRole role="admin" user={data.user}>
+        <p class="text-xl font-semibold mb-4">All locations that have been added:</p>
+      </CheckRole>
 
-    <CheckRole user={data.user}>
-      <p class="text-xl font-semibold mb-4">
-        Locations you have added:
-      </p>
-    </CheckRole>
+      <CheckRole user={data.user}>
+        <p class="text-xl font-semibold mb-4">Locations you have added:</p>
+      </CheckRole>
+    {/if}
 
     <Accordion>
       {#each locations as location, index}
@@ -52,7 +51,8 @@
           <svelte:fragment slot="summary">
             <div class="flex items-center justify-between w-full">
               <span class="text-lg font-semibold">
-                {location.title} ({location.games.length} {location.games.length === 1 ? 'Game' : 'Games'})
+                {location.title} ({location.games.length}
+                {location.games.length === 1 ? "Game" : "Games"})
               </span>
               <Badge colour={location.colour}>{location.category}</Badge>
             </div>
@@ -73,9 +73,12 @@
                       <i class="fas fa-folder-open"></i>
                     </span>
                   </a>
-                  <Form action="?/delete" hiddenName="id" hiddenValue={location._id}>
-                    <Button text="" icon="fas fa-trash-alt" colour="variant-filled-error" fullWidth={false} />
-                  </Form>
+                  <!-- Conditionally render delete button for admins -->
+                  <CheckRole role="admin" user={data.user}>
+                    <Form action="?/delete" hiddenName="id" hiddenValue={location._id}>
+                      <Button text="" icon="fas fa-trash-alt" colour="variant-filled-error" fullWidth={false} />
+                    </Form>
+                  </CheckRole>
                 </div>
               </div>
               <div>
@@ -98,6 +101,7 @@
                 locations={[location]}
                 showLayers={false}
                 zoom={15}
+                class="w-full h-64 md:h-96 lg:h-[500px]"
               />
             </div>
           </svelte:fragment>
