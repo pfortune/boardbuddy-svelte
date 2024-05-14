@@ -13,6 +13,7 @@
   <svelte:fragment slot="lead">
     <nav>
       <ul class="flex space-x-4">
+        <li><a href="/" class="btn variant-{$page.url.pathname === '/' ? active : notActive}">Home</a></li>
         <li><a href="/dashboard" class="btn variant-{$page.url.pathname === '/dashboard' ? active : notActive}">Dashboard</a></li>
         <li><a href="/search" class="btn variant-{$page.url.pathname === '/search' ? active : notActive}">Search</a></li>
         <li><a href="/gallery" class="btn variant-{$page.url.pathname === '/gallery' ? active : notActive}">Gallery</a></li>

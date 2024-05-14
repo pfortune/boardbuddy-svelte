@@ -1,7 +1,10 @@
 import type { PageServerLoad } from "./$types";
-import { redirect } from "@sveltejs/kit";
+import { locationStore } from "$lib/models/mongo/location-store";
 
-export const load: PageServerLoad = ({ locals }) => {
+export const load: PageServerLoad = async ({ locals }) => {
+
+  const locations = await locationStore.getAllLocations();
+
   const user = {
     user: locals.session?.userId,
     firstName: locals.session?.claims.first_name,
@@ -9,6 +12,7 @@ export const load: PageServerLoad = ({ locals }) => {
   };
 
   return {
-    user
+    user,
+    locations
   };
 };

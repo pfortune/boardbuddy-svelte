@@ -34,3 +34,7 @@ export interface Image {
   locationid: string;
   createdAt?: Date;
 }
+
+export interface User {
+  role: string;
+}
