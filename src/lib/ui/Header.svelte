@@ -4,6 +4,7 @@
     import { LightSwitch } from "@skeletonlabs/skeleton";
     import Menu from './Menu.svelte';
     import MenuItem from './MenuItem.svelte';
+    import ThemeSwitcher from "./ThemeSwitcher.svelte";
   
     export let username: string;
     let active: string = "variant-filled-primary";
@@ -55,6 +56,7 @@
             inactiveClass={notActive} 
             additionalClasses="block text-left" />
         {/each}
+        <ThemeSwitcher />
       </ul>
     </nav>
   {/if}

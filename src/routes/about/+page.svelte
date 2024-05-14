@@ -3,6 +3,7 @@
 </script>
 
 <Card title="About">
+
   <div class="space-y-4">
     <h2 class="text-lg font-bold">Bringing Board Game Enthusiasts Together</h2>
     <p>

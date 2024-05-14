@@ -1,5 +1,6 @@
 <script lang="ts">
     import MenuItem from "./MenuItem.svelte"
+    import ThemeSwitcher from "./ThemeSwitcher.svelte";
     export let menuItems: { href: string, label: string }[];
     export let activeClass: string;
     export let inactiveClass: string;
@@ -24,6 +25,7 @@
             activeClass={activeClass} 
             inactiveClass={inactiveClass} />
         {/each}
+        <ThemeSwitcher width="w-48"/>
       </ul>
     </nav>
   </div>

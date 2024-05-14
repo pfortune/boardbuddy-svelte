@@ -1,4 +1,7 @@
 <script lang="ts">
+  // Svelte
+  import { browser } from "$app/environment";
+
   // Global Stylesheets
   import "../app.postcss";
 

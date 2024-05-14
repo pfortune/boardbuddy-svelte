@@ -8,3 +8,4 @@ export { default as Gallery } from './Gallery.svelte';
 export { default as Badge } from './Badge.svelte';
 export { default as Leaflet } from './Leaflet.svelte';
 export { default as Header } from './Header.svelte';
+export { default as ThemeSwitcher } from './ThemeSwitcher.svelte';
