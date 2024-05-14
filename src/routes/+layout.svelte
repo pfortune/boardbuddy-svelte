@@ -3,7 +3,7 @@
   import "../app.postcss";
 
   // Layout Components
-  import { Menu } from "$lib/ui";
+  import { Menu, Heading } from "$lib/ui";
 
   // Clerk Auth
   import SignedIn from "clerk-sveltekit/client/SignedIn.svelte";
@@ -38,6 +38,7 @@
 <Toast />
 <AppShell class="h-screen">
   <svelte:fragment slot="header">
+    <Heading />
     <SignedIn>
       <ClerkLoaded let:clerk>
         <Menu username={clerk?.user?.firstName || "Back"} />
