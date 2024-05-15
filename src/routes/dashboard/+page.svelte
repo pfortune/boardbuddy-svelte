@@ -4,8 +4,8 @@
   import LocationForm from "./LocationForm.svelte";
   import { Card, Badge, CheckRole } from "$lib/ui";
   import { toTitleCase } from "$lib/util";
-  import { Accordion, AccordionItem, getModalStore } from "@skeletonlabs/skeleton";
-  import type { ModalSettings } from "@skeletonlabs/skeleton";
+  import { Accordion, AccordionItem, getModalStore, getToastStore } from "@skeletonlabs/skeleton";
+  import type { ModalSettings, ToastSettings } from "@skeletonlabs/skeleton";
   import LeafletMap from "$lib/ui/Leaflet.svelte";
   import type { Location } from "$lib/types/boardbuddy-types";
 
@@ -16,6 +16,7 @@
 
   let form: HTMLFormElement;
 
+  const toastStore = getToastStore();
   const modalStore = getModalStore();
 
   const modal: ModalSettings = {
@@ -26,6 +27,7 @@
       if (r) {
         if (form && typeof form.requestSubmit === "function") {
           form.requestSubmit();
+          showSuccessMessage("Location deleted.");
         }
       }
     }
@@ -50,6 +52,23 @@
     games: location.games || [],
     colour: colours[location.category.toLowerCase() as keyof typeof colours]
   }));
+
+  function showErrorMessage(message: string) {
+    const t: ToastSettings = {
+      message: message,
+      background: "variant-filled-error"
+    };
+    toastStore.trigger(t);
+  }
+
+  function showSuccessMessage(message:string) {
+    console.log("showing success message");
+    const t: ToastSettings = {
+      message: message,
+      background: "variant-filled-success"
+    };
+    toastStore.trigger(t);
+  }
 
   const pluralize = (count: number, singular: string, plural: string): string => {
     return count === 1 ? singular : plural;
@@ -149,6 +168,6 @@
   </Card>
 
   <Card title="Add Location">
-    <LocationForm />
+    <LocationForm onSuccess={showSuccessMessage}/>
   </Card>
 </SignedIn>

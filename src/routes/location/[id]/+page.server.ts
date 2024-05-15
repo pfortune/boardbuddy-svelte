@@ -70,7 +70,6 @@ export const actions: Actions = {
 
       try {
           const images = await imageStore.addImages(params.id, locals.session?.userId, imageUrls);
-          console.log("Added images:", images);
           return { status: 200, body: { images } };
       } catch (err) {
           console.error("Error adding images:", err);

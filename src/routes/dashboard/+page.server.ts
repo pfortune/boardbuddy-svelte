@@ -2,7 +2,6 @@ import { locationStore } from "$lib/models/mongo/location-store";
 import type { PageServerLoad, Actions, Action } from "./$types";
 
 export const load: PageServerLoad = async ({ locals }) => {
-  
   const user = {
     role: locals.session?.claims.metadata.role
   };
@@ -31,7 +30,6 @@ export const actions: Actions = {
       const y = parseFloat(formData.get('y')?.toString() || '0');
       const userId = locals.session?.userId;
 
-
       if (!title || !category || !userId) {
         return { status: 400, errors: { message: "Required fields are missing" } };
       }
@@ -46,7 +44,7 @@ export const actions: Actions = {
 
       const addedLocation = await locationStore.addLocation(location);
       if (addedLocation) {
-        return { status: 303, headers: { Location: '/dashboard' } };
+        return { status: 303, headers: { Location: '/dashboard' }, success: true };
       } else {
         return { status: 500, errors: { message: "Failed to add location" } };
       }

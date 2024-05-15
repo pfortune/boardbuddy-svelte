@@ -79,9 +79,7 @@ export const locationStore = {
   
   async addLocation(location: Location): Promise<Location | null> {
     try {
-      console.log("Attempting to add location with data:", location);
       const locationObj = await LocationMongoose.create(location);
-      console.log("Added location with ID:", locationObj._id);
       return await this.getLocationById(locationObj._id.toString());
     } catch (error) {
       console.error("Error adding new location:", error);
