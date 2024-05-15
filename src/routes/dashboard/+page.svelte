@@ -5,6 +5,7 @@
   import { Card, Badge, CheckRole } from "$lib/ui";
   import { toTitleCase } from "$lib/util";
   import { Accordion, AccordionItem, getModalStore } from "@skeletonlabs/skeleton";
+  import type { ModalSettings } from '@skeletonlabs/skeleton';
   import LeafletMap from "$lib/ui/Leaflet.svelte";
   import type { Location } from "$lib/types/boardbuddy-types";
 
@@ -13,7 +14,7 @@
     user: any;
   };
 
-  let form;
+  let form: HTMLFormElement;
 
   const modalStore = getModalStore();
 
@@ -23,7 +24,7 @@
     body: "Are you sure you wish to proceed?",
     response: (r) => {
       if (r) {
-        if (form && typeof form.submit === 'function') {
+        if (form && typeof form.requestSubmit === 'function') {
           form.requestSubmit();
         }
       }
@@ -46,8 +47,17 @@
 
   $: locations = data.locations.map((location: Location) => ({
     ...location,
-    colour: colours[location.category.toLowerCase()]
-  }))
+    games: location.games || [],
+    colour: colours[location.category.toLowerCase() as keyof typeof colours]
+  }));
+
+  const pluralize = (count: number, singular: string, plural: string): string => {
+    return count === 1 ? singular : plural;
+  };
+
+  const getJoinedTitles = (games: any[]): string => {
+    return games.map((game) => game.title).join(", ");
+  };
 </script>
 
 <SignedIn>
@@ -73,8 +83,7 @@
           <svelte:fragment slot="summary">
             <div class="flex items-center justify-between w-full">
               <span class="text-lg font-semibold">
-                {location.title} ({location.games.length}
-                {location.games.length === 1 ? "Game" : "Games"})
+                {location.title} ({location.games.length} {pluralize(location.games.length, "Game", "Games")})
               </span>
               <Badge colour={location.colour}>{toTitleCase(location.category)}</Badge>
             </div>
@@ -109,14 +118,13 @@
                       </button>
                     </form>
                   </CheckRole>
-                  
                 </div>
               </div>
               <div>
-                {#if location.games && location.games.length === 0}
+                {#if location.games.length === 0}
                   <p>Games at this location: None</p>
-                {:else if location.games && location.games.length <= 3}
-                  <p>Games at this location: {location.games.map((game) => game.title).join(", ")}</p>
+                {:else if location.games.length <= 3}
+                  <p>Games at this location: {getJoinedTitles(location.games)}</p>
                 {:else}
                   <p>
                     Games at this location: {location.games
