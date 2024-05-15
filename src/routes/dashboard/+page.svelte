@@ -5,7 +5,7 @@
   import { Card, Badge, CheckRole } from "$lib/ui";
   import { toTitleCase } from "$lib/util";
   import { Accordion, AccordionItem, getModalStore } from "@skeletonlabs/skeleton";
-  import type { ModalSettings } from '@skeletonlabs/skeleton';
+  import type { ModalSettings } from "@skeletonlabs/skeleton";
   import LeafletMap from "$lib/ui/Leaflet.svelte";
   import type { Location } from "$lib/types/boardbuddy-types";
 
@@ -24,7 +24,7 @@
     body: "Are you sure you wish to proceed?",
     response: (r) => {
       if (r) {
-        if (form && typeof form.requestSubmit === 'function') {
+        if (form && typeof form.requestSubmit === "function") {
           form.requestSubmit();
         }
       }
@@ -61,6 +61,14 @@
 </script>
 
 <SignedIn>
+  <div class="p-4">
+    <ol class="breadcrumb">
+      <li class="crumb"><a class="anchor" href="/">Home</a></li>
+      <li class="crumb-separator" aria-hidden="true">&rsaquo;</li>
+      <li class="crumb">Dashboard</li>
+    </ol>
+  </div>
+
   <Card title="Locations">
     {#if locations.length === 0}
       <p>No locations yet.</p>
@@ -83,7 +91,8 @@
           <svelte:fragment slot="summary">
             <div class="flex items-center justify-between w-full">
               <span class="text-lg font-semibold">
-                {location.title} ({location.games.length} {pluralize(location.games.length, "Game", "Games")})
+                {location.title} ({location.games.length}
+                {pluralize(location.games.length, "Game", "Games")})
               </span>
               <Badge colour={location.colour}>{toTitleCase(location.category)}</Badge>
             </div>
@@ -108,10 +117,7 @@
                   <CheckRole role="admin" user={data.user}>
                     <form action="?/delete" method="post" bind:this={form} use:enhance>
                       <input type="hidden" name="id" value={location._id} />
-                      <button
-                        on:click|preventDefault={triggerModal}
-                        class="btn variant-filled-error py-2 px-4 rounded-sm inline-flex items-center"
-                      >
+                      <button on:click|preventDefault={triggerModal} class="btn variant-filled-error py-2 px-4 rounded-sm inline-flex items-center">
                         <span class="icon text-sm">
                           <i class="fas fa-trash-alt"></i>
                         </span>
@@ -134,13 +140,7 @@
                   </p>
                 {/if}
               </div>
-              <LeafletMap
-                id={`map-${index}`}
-                location={{ lat: location.x, lng: location.y }}
-                locations={[location]}
-                showLayers={false}
-                zoom={15}
-              />
+              <LeafletMap id={`map-${index}`} location={{ lat: location.x, lng: location.y }} locations={[location]} showLayers={false} zoom={15} />
             </div>
           </svelte:fragment>
         </AccordionItem>

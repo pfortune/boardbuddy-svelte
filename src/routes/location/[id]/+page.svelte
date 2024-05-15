@@ -23,6 +23,16 @@
   <input type="hidden" name="imageUrls" />
 </form>
 
+<div class="p-4">
+  <ol class="breadcrumb">
+    <li class="crumb"><a class="anchor" href="/">Home</a></li>
+    <li class="crumb-separator" aria-hidden="true">&rsaquo;</li>
+    <li class="crumb"><a class="anchor" href="/dashboard">Dashboard</a></li>
+    <li class="crumb-separator" aria-hidden="true">&rsaquo;</li>
+    <li class="crumb">{location.title}</li>
+  </ol>
+</div>
+
 <Card title={location.title}>
   <LeafletMap id={`map`} location={{ lat: location.x, lng: location.y }} locations={[location]} showLayers={false} zoom={15} class="w-full h-64 md:h-96 lg:h-[500px]" />
 </Card>
