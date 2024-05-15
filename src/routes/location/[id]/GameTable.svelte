@@ -1,13 +1,15 @@
 <script lang="ts">
   import type { Game } from "$lib/types/boardbuddy-types";
   import { enhance } from "$app/forms";
-  import { getModalStore } from "@skeletonlabs/skeleton";
-  import type { ModalSettings } from "@skeletonlabs/skeleton";
+  import { getModalStore, type ModalSettings } from "@skeletonlabs/skeleton";
   export let games: Game[] = [];
 
   let deleteGameForm: HTMLFormElement;
 
+  export let showSuccessMessage;
+
   const modalStore = getModalStore();
+
   const modal: ModalSettings = {
     type: "confirm",
     title: "Please Confirm Deletion",
@@ -16,6 +18,7 @@
       if (r) {
         if (deleteGameForm && typeof deleteGameForm.submit === "function") {
           deleteGameForm.requestSubmit();
+          showSuccessMessage("Game deleted.");
         }
       }
     }

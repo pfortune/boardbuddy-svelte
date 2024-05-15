@@ -1,8 +1,8 @@
 <script lang="ts">
-  import LeafletMap from "$lib/ui/Leaflet.svelte";
   import type { PageData } from "./$types";
   import { enhance } from "$app/forms";
-  import { Card, Carousel, UploadWidget } from "$lib/ui";
+  import { Card, Carousel, UploadWidget, LeafletMap } from "$lib/ui";
+  import { getToastStore, type ToastSettings } from "@skeletonlabs/skeleton";
   import GameForm from "./GameForm.svelte";
   import GameTable from "./GameTable.svelte";
 
@@ -10,9 +10,20 @@
 
   let formElement: HTMLFormElement;
 
+  const toastStore = getToastStore();
+
+  function showSuccessMessage(message:string) {
+    const t: ToastSettings = {
+      message: message,
+      background: "variant-filled-success"
+    };
+    toastStore.trigger(t);
+  }
+
   export function handleUpload(event: CustomEvent) {
     formElement.imageUrls.value = JSON.stringify(event.detail.urls);
     formElement.requestSubmit();
+    showSuccessMessage("Image uploaded.")
   }
 
   $: location = data.location;
@@ -43,7 +54,7 @@
       {#if !location.games || location.games.length === 0}
         <p>No games added yet. Why not add one.</p>
       {:else}
-        <GameTable games={location.games} />
+        <GameTable {showSuccessMessage} games={location.games} />
       {/if}
     </Card>
   </div>
