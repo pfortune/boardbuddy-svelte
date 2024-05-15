@@ -6,8 +6,7 @@
   let maps = [];
 </script>
 
-<Card title="Locations near you">
-  <LeafletMap
+<LeafletMap
     id="map-with-layers"
     location={{ lat: 53.2734, lng: -7.7783203 }}
     locations={locations} 
@@ -15,4 +14,4 @@
     zoom={8}
     bind:this={maps[maps.length]}
   />
-</Card>
+

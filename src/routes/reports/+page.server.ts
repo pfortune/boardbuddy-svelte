@@ -5,7 +5,7 @@ export const load: PageServerLoad = ({ locals }) => {
     role: locals.session?.claims.metadata.role
   };
 
-  console.log("src/search/+page.server.ts: ", user);
+  console.log("src/reports/+page.server.ts: ", user);
   return {
     user
   };

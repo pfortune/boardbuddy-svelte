@@ -2,6 +2,7 @@
   import SignedIn from "clerk-sveltekit/client/SignedIn.svelte";
   import SignedOut from "clerk-sveltekit/client/SignedOut.svelte";
   import SplashScreen from "./home/SplashScreen.svelte";
+  import { Card } from "$lib/ui";
   import Map from "./home/Map.svelte";
 
   export let data;
@@ -12,5 +13,10 @@
 </SignedOut>
 
 <SignedIn>
-    <Map locations={data.locations}/>
+  <Card title="Locations near you">
+    <Map locations={data.locations} />
+  </Card>
+
+  <Card title="Latest Location">
+  </Card>
 </SignedIn>

@@ -168,6 +168,6 @@
   </Card>
 
   <Card title="Add Location">
-    <LocationForm onSuccess={showSuccessMessage}/>
+    <LocationForm />
   </Card>
 </SignedIn>

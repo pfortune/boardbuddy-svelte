@@ -18,7 +18,7 @@
   const menuItems = [
     { href: "/", label: "Home" },
     { href: "/dashboard", label: "Dashboard" },
-    { href: "/search", label: "Search" },
+    { href: "/reports", label: "Reports" },
     { href: "/gallery", label: "Gallery" },
     { href: "/about", label: "About" }
   ];

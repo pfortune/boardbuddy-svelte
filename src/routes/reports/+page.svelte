@@ -6,8 +6,8 @@
   <ol class="breadcrumb">
     <li class="crumb"><a class="anchor" href="/">Home</a></li>
     <li class="crumb-separator" aria-hidden="true">&rsaquo;</li>
-    <li class="crumb">Search</li>
+    <li class="crumb">Reports</li>
   </ol>
 </div>
 
-<Card title="Search"></Card>
+<Card title="Reports / Charts"></Card>
