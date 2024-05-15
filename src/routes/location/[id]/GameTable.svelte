@@ -1,8 +1,29 @@
 <script lang="ts">
-  import { Form, Button } from "$lib/ui/forms";
   import type { Game } from "$lib/types/boardbuddy-types";
+  import { enhance } from "$app/forms";
+  import { getModalStore } from "@skeletonlabs/skeleton";
+  import type { ModalSettings } from "@skeletonlabs/skeleton";
   export let games: Game[] = [];
-  console.log("Games tables data: ", games)
+
+  let deleteGameForm: HTMLFormElement;
+
+  const modalStore = getModalStore();
+  const modal: ModalSettings = {
+    type: "confirm",
+    title: "Please Confirm Deletion",
+    body: "Are you sure you delete this game?",
+    response: (r) => {
+      if (r) {
+        if (deleteGameForm && typeof deleteGameForm.submit === "function") {
+          deleteGameForm.requestSubmit();
+        }
+      }
+    }
+  };
+
+  const triggerModal = async () => {
+    await modalStore.trigger(modal);
+  };
 </script>
 
 <div class="table-container rounded-none">
@@ -32,9 +53,17 @@
           <td>{game.duration} minutes</td>
           <td>{game.age}+</td>
           <td>
-            <Form action="?/delete_game" hiddenName="id" hiddenValue={game._id}>
-              <Button text="" icon="fas fa-trash-alt" colour="variant-filled-error" fullWidth={false} />
-            </Form>
+            <form action="?/delete_game" method="post" bind:this={deleteGameForm} use:enhance>
+              <input type="hidden" name="id" value={game._id} />
+              <button
+                on:click|preventDefault={triggerModal}
+                class="btn variant-filled-error py-2 px-4 rounded-sm inline-flex items-center"
+              >
+                <span class="icon text-sm">
+                  <i class="fas fa-trash-alt"></i>
+                </span>
+              </button>
+            </form>
           </td>
         </tr>
       {/each}
