@@ -1,16 +1,37 @@
 <script lang="ts">
-  import { Form, Button } from "$lib/ui/forms";
   import SignedIn from "clerk-sveltekit/client/SignedIn.svelte";
+  import { enhance } from "$app/forms";
   import LocationForm from "./LocationForm.svelte";
   import { Card, Badge, CheckRole } from "$lib/ui";
   import { toTitleCase } from "$lib/util";
-  import { Accordion, AccordionItem } from "@skeletonlabs/skeleton";
+  import { Accordion, AccordionItem, getModalStore } from "@skeletonlabs/skeleton";
   import LeafletMap from "$lib/ui/Leaflet.svelte";
   import type { Location } from "$lib/types/boardbuddy-types";
 
   type Data = {
     locations: Location[];
     user: any;
+  };
+
+  let form;
+
+  const modalStore = getModalStore();
+
+  const modal: ModalSettings = {
+    type: "confirm",
+    title: "Please Confirm",
+    body: "Are you sure you wish to proceed?",
+    response: (r) => {
+      if (r) {
+        if (form && typeof form.submit === 'function') {
+          form.requestSubmit();
+        }
+      }
+    }
+  };
+
+  const triggerModal = async () => {
+    await modalStore.trigger(modal);
   };
 
   export let data: Data;
@@ -26,7 +47,7 @@
   $: locations = data.locations.map((location: Location) => ({
     ...location,
     colour: colours[location.category.toLowerCase()]
-  }));
+  }))
 </script>
 
 <SignedIn>
@@ -76,10 +97,19 @@
                   </a>
                   <!-- Conditionally render delete button for admins -->
                   <CheckRole role="admin" user={data.user}>
-                    <Form action="?/delete" hiddenName="id" hiddenValue={location._id}>
-                      <Button text="" icon="fas fa-trash-alt" colour="variant-filled-error" fullWidth={false} />
-                    </Form>
+                    <form action="?/delete" method="post" bind:this={form} use:enhance>
+                      <input type="hidden" name="id" value={location._id} />
+                      <button
+                        on:click|preventDefault={triggerModal}
+                        class="btn variant-filled-error py-2 px-4 rounded-sm inline-flex items-center"
+                      >
+                        <span class="icon text-sm">
+                          <i class="fas fa-trash-alt"></i>
+                        </span>
+                      </button>
+                    </form>
                   </CheckRole>
+                  
                 </div>
               </div>
               <div>
@@ -102,7 +132,6 @@
                 locations={[location]}
                 showLayers={false}
                 zoom={15}
-                class="w-full h-64 md:h-96 lg:h-[500px]"
               />
             </div>
           </svelte:fragment>

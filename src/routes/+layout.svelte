@@ -13,7 +13,7 @@
   import ClerkLoaded from "clerk-sveltekit/client/ClerkLoaded.svelte";
 
   // Skeleton UI
-  import { AppShell, Toast, getToastStore, initializeStores } from "@skeletonlabs/skeleton";
+  import { AppShell, Modal, Toast, getToastStore, initializeStores } from "@skeletonlabs/skeleton";
   import type { ToastSettings, ToastStore } from "@skeletonlabs/skeleton";
 
   initializeStores();
@@ -39,6 +39,7 @@
 </svelte:head>
 
 <Toast />
+<Modal />
 <AppShell class="h-screen">
   <svelte:fragment slot="header">
     <SignedIn>
