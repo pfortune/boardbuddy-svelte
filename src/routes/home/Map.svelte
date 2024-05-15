@@ -1,6 +1,5 @@
 <script lang="ts">
   import LeafletMap from "$lib/ui/Leaflet.svelte";
-  import Card from "$lib/ui/Card.svelte";
 
   export let locations;
   let maps = [];

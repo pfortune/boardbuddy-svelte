@@ -47,7 +47,7 @@
         layers: [defaultLayer]
       });
   
-      if (showLayers && locations.length > 1) {
+      if (showLayers && locations.length > 0) {
         locations.forEach((loc) => {
           if (!categoryLayers[loc.category]) {
             categoryLayers[loc.category] = leaflet.layerGroup();
