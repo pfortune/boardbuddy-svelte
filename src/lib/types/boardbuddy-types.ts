@@ -46,3 +46,17 @@ export interface Image {
 export interface User {
   role: string;
 }
+
+export interface SearchResult {
+  id: string;
+  title: string;
+  year: string;
+}
+
+export interface GameDetails extends SearchResult {
+  minPlayers: string;
+  maxPlayers: string;
+  playingTime: string;
+  age: string;
+  category: string;
+}

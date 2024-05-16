@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { Game } from "$lib/types/boardbuddy-types";
   import { enhance } from "$app/forms";
-  import { getModalStore, type ModalSettings } from "@skeletonlabs/skeleton";
+  import { getModalStore, getToastStore, type ToastSettings, type ModalSettings } from "@skeletonlabs/skeleton";
   export let games: Game[] = [];
 
-  let deleteGameForm: HTMLFormElement;
+  let gameIdToDelete: string | null = null;
 
   export let showSuccessMessage;
 
@@ -13,18 +13,20 @@
   const modal: ModalSettings = {
     type: "confirm",
     title: "Please Confirm Deletion",
-    body: "Are you sure you delete this game?",
+    body: "Are you sure you want to delete this game?",
     response: (r) => {
-      if (r) {
-        if (deleteGameForm && typeof deleteGameForm.submit === "function") {
-          deleteGameForm.requestSubmit();
+      if (r && gameIdToDelete) {
+        const form = document.getElementById(`delete-form-${gameIdToDelete}`) as HTMLFormElement;
+        if (form) {
+          form.requestSubmit();
           showSuccessMessage("Game deleted.");
         }
       }
     }
   };
 
-  const triggerModal = async () => {
+  const triggerModal = async (gameId: string) => {
+    gameIdToDelete = gameId;
     await modalStore.trigger(modal);
   };
 </script>
@@ -56,10 +58,10 @@
           <td>{game.duration} minutes</td>
           <td>{game.age}+</td>
           <td>
-            <form action="?/delete_game" method="post" bind:this={deleteGameForm} use:enhance>
+            <form id={`delete-form-${game._id}`} action="?/delete_game" method="post" use:enhance>
               <input type="hidden" name="id" value={game._id} />
               <button
-                on:click|preventDefault={triggerModal}
+                on:click|preventDefault={() => triggerModal(game._id)}
                 class="btn variant-filled-error py-2 px-4 rounded-sm inline-flex items-center"
               >
                 <span class="icon text-sm">
