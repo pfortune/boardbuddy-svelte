@@ -32,7 +32,7 @@
 
   onDestroy(() => {
     chart?.destroy();
-  });
+  }) ;
 </script>
 
 <canvas bind:this={canvas}></canvas>

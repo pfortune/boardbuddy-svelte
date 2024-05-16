@@ -2,7 +2,7 @@
   import type { PageData } from "./$types";
   import { enhance } from "$app/forms";
   import { Card, Carousel, UploadWidget, LeafletMap, Rating } from "$lib/ui";
-  import { getToastStore, type ToastSettings } from "@skeletonlabs/skeleton";
+  import { getModalStore, getToastStore, type ToastSettings, type ModalSettings } from "@skeletonlabs/skeleton";
   import GameForm from "./GameForm.svelte";
   import GameTable from "./GameTable.svelte";
 
@@ -26,6 +26,8 @@
     showSuccessMessage("Image uploaded.");
   }
 
+  const modalStore = getModalStore();
+
   $: location = data.location;
   $: images = data.images;
 </script>
@@ -45,16 +47,20 @@
 </div>
 
 <div class="card flex justify-between items-center p-4 mb-4 rounded shadow">
-  <h2 class="text-2xl font-semibold">{location.title}</h2>
-
-  <Rating />
+  <h2 class="text-2xl font-semibold">{location.title} <Rating /></h2> 
+  <button on:click class="btn variant-filled-primary py-2 px-4 rounded inline-flex items-center">
+    <span class="icon text-sm mr-2">
+      <i class="fas fa-plus"></i>
+    </span>
+    Add New Game
+  </button>
 </div>
 
 <Card title="Map">
   <LeafletMap id={`map`} location={{ lat: location.x, lng: location.y }} locations={[location]} showLayers={false} zoom={15} class="w-full h-64 md:h-96 lg:h-[500px]" />
 </Card>
 
-<div class="flex space-x-4 mb-4">
+<div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-4">
   <div class="flex-1">
     <Card title="Board Games at {location.title}">
       {#if !location.games || location.games.length === 0}
@@ -73,6 +79,7 @@
     </Card>
   </div>
 </div>
+
 
 <Card title="Add Game">
   <GameForm />
