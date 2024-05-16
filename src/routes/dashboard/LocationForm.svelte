@@ -12,7 +12,9 @@
     { value: "cafe", label: "Cafe" },
     { value: "restaurant", label: "Restaurant" },
     { value: "library", label: "Library" },
-    { value: "bookstore", label: "Bookstore" }
+    { value: "bookstore", label: "Bookstore" },
+    { value: "gamestore", label: "Gamestore" },
+    { value: "social-space", label: "Social Space" },
   ];
 
   export let form;

@@ -134,7 +134,7 @@
                   </a>
                   <!-- Conditionally render delete button for admins -->
                   <CheckRole role="admin" user={data.user}>
-                    <form action="?/delete" method="post" bind:this={form} use:enhance>
+                    <form id={`delete-form-${location._id}`} action="?/delete" method="post" use:enhance>
                       <input type="hidden" name="id" value={location._id} />
                       <button on:click|preventDefault={triggerModal} class="btn variant-filled-error py-2 px-4 rounded-sm inline-flex items-center">
                         <span class="icon text-sm">

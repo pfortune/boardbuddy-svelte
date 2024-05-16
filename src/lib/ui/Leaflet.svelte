@@ -1,5 +1,6 @@
 <script lang="ts">
   import "leaflet/dist/leaflet.css";
+  import { toTitleCase } from "$lib/util";
   import type { Location } from "$lib/types/boardbuddy-types";
   import { onMount } from "svelte";
   import type { Control, Map as LeafletMap } from "leaflet";
@@ -54,7 +55,7 @@
           }
           const marker = leaflet.marker([loc.x, loc.y], { icon: customIcon });
           const popup = leaflet.popup({ autoClose: false, closeOnClick: false });
-          popup.setContent(`<b>${loc.title}</b><br>${loc.category}<br><a href="/location/${loc._id}">View Location</a>`);
+          popup.setContent(`<b>${loc.title}</b><br>${toTitleCase(loc.category)}<br><a href="/location/${loc._id}">View Location</a>`);
           marker.bindPopup(popup);
           categoryLayers[loc.category].addLayer(marker);
         });
