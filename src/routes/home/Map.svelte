@@ -2,6 +2,7 @@
   import LeafletMap from "$lib/ui/Leaflet.svelte";
 
   export let locations;
+
   let maps = [];
 </script>
 

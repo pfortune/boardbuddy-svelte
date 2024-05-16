@@ -163,7 +163,7 @@
                   </p>
                 {/if}
               </div>
-              <LeafletMap id={`map-${index}`} location={{ lat: location.x, lng: location.y }} locations={[location]} showLayers={false} zoom={15} />
+              <LeafletMap id={`map-${index}`} location={{ lat: location.y, lng: location.x }} locations={[location]} showLayers={false} zoom={15} />
             </div>
           </svelte:fragment>
         </AccordionItem>

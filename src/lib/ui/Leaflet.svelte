@@ -53,7 +53,7 @@
           if (!categoryLayers[loc.category]) {
             categoryLayers[loc.category] = leaflet.layerGroup();
           }
-          const marker = leaflet.marker([loc.x, loc.y], { icon: customIcon });
+          const marker = leaflet.marker([loc.y, loc.x], { icon: customIcon });
           const popup = leaflet.popup({ autoClose: false, closeOnClick: false });
           popup.setContent(`<b>${loc.title}</b><br>${toTitleCase(loc.category)}<br><a href="/location/${loc._id}">View Location</a>`);
           marker.bindPopup(popup);
@@ -69,7 +69,7 @@
         control = leaflet.control.layers(baseLayers, categoryLayers).addTo(imap);
       } else if (locations.length === 1 || !showLayers) {
         locations.forEach((loc) => {
-          const marker = leaflet.marker([loc.x, loc.y], { icon: customIcon });
+          const marker = leaflet.marker([loc.y, loc.x], { icon: customIcon });
           marker.addTo(imap);
         });
       }
