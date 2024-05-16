@@ -2,7 +2,9 @@ import { join } from 'path'
 import type { Config } from 'tailwindcss'
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
-import { skeleton } from '@skeletonlabs/tw-plugin'
+import { skeleton } from '@skeletonlabs/tw-plugin';
+import { dusk } from "./src/lib/themes/dusk";
+
 
 export default {
 	darkMode: 'selector',
@@ -24,8 +26,9 @@ export default {
 					{ name: "sahara",  enhancements: true},
 					{ name: "crimson",  enhancements: true},
 					{ name: "seafoam",  enhancements: true},
-					{ name: "hamlindigo",  enhancements: true}
+					{ name: "hamlindigo",  enhancements: true},
 				],
+				custom: [dusk] 
 			},
 		}),
 	], 

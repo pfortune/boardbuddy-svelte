@@ -4,7 +4,7 @@
   import { onMount } from "svelte";
   import { get } from "svelte/store";
 
-  const themes: string[] = ["Rocket", "Modern", "Vintage", "Skeleton", "Wintry", "Sahara", "Crimson", "Seafoam", "Hamlindigo"];
+  const themes: string[] = ["Dusk","Rocket", "Modern", "Vintage", "Skeleton", "Wintry", "Sahara", "Crimson", "Seafoam", "Hamlindigo"];
 
   export let width: string = "";
 
