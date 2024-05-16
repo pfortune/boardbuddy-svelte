@@ -14,7 +14,7 @@
     user: any;
   };
 
-  let form: HTMLFormElement;
+  let locationIdToDelete: string | null = null;
 
   const toastStore = getToastStore();
   const modalStore = getModalStore();
@@ -24,8 +24,9 @@
     title: "Please Confirm",
     body: "Are you sure you wish to proceed?",
     response: (r) => {
-      if (r) {
-        if (form && typeof form.requestSubmit === "function") {
+      if (r && locationIdToDelete) {
+        const form = document.getElementById(`delete-form-${locationIdToDelete}`) as HTMLFormElement;
+        if (form) {
           form.requestSubmit();
           showSuccessMessage("Location deleted.");
         }
@@ -33,7 +34,8 @@
     }
   };
 
-  const triggerModal = async () => {
+  const triggerModal = async (locationId: string) => {
+    locationIdToDelete = locationId;
     await modalStore.trigger(modal);
   };
 
@@ -44,7 +46,9 @@
     cafe: "variant-soft-secondary",
     restaurant: "variant-soft-primary",
     library: "variant-soft-tertiary",
-    bookstore: "variant-soft-success"
+    bookstore: "variant-soft-success",
+    "game-store": "variant-ghost-warning",
+    "social-space": "variant-ghost-primary",
   };
 
   $: locations = data.locations.map((location: Location) => ({
@@ -136,7 +140,7 @@
                   <CheckRole role="admin" user={data.user}>
                     <form id={`delete-form-${location._id}`} action="?/delete" method="post" use:enhance>
                       <input type="hidden" name="id" value={location._id} />
-                      <button on:click|preventDefault={triggerModal} class="btn variant-filled-error py-2 px-4 rounded-sm inline-flex items-center">
+                      <button on:click|preventDefault={() => triggerModal(location._id)} class="btn variant-filled-error py-2 px-4 rounded-sm inline-flex items-center">
                         <span class="icon text-sm">
                           <i class="fas fa-trash-alt"></i>
                         </span>

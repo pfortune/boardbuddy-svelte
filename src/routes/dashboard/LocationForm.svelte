@@ -13,7 +13,7 @@
     { value: "restaurant", label: "Restaurant" },
     { value: "library", label: "Library" },
     { value: "bookstore", label: "Bookstore" },
-    { value: "gamestore", label: "Gamestore" },
+    { value: "game-store", label: "Game Store" },
     { value: "social-space", label: "Social Space" },
   ];
 
