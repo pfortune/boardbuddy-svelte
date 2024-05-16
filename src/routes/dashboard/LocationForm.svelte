@@ -14,6 +14,12 @@
     { value: "library", label: "Library" },
     { value: "bookstore", label: "Bookstore" }
   ];
+
+  export let form;
+
+  if (form?.success) {
+    console.log("Form submitted successfully! Hoorah");
+  }
 </script>
 
 <form method="POST" action="?/add" use:enhance>

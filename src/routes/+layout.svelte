@@ -13,8 +13,7 @@
   import ClerkLoaded from "clerk-sveltekit/client/ClerkLoaded.svelte";
 
   // Skeleton UI
-  import { AppShell, Modal, Toast, getToastStore, initializeStores } from "@skeletonlabs/skeleton";
-  import type { ToastSettings, ToastStore } from "@skeletonlabs/skeleton";
+  import { AppShell, Modal, autoModeWatcher, Toast, getToastStore, initializeStores } from "@skeletonlabs/skeleton";
 
   initializeStores();
 
@@ -33,6 +32,7 @@
 </script>
 
 <svelte:head>
+  {@html '<script>(' + autoModeWatcher.toString() + ')();</script>'}
   <title>{meta.title}</title>
   <meta name="title" content={meta.title} />
   <meta name="description" content={meta.description} />
