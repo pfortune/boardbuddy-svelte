@@ -27,6 +27,14 @@ export interface Game {
   createdAt?: Date;
 }
 
+export interface Rating {
+  _id: string;
+  rating: number;
+  userId: string;
+  locationId: string;
+  createdAt?: Date;
+}
+
 export interface Image {
   _id: string;
   imgUrl: string;
