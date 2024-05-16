@@ -27,7 +27,7 @@
 <form method="POST" action="?/add" use:enhance>
   <TextInput label="Location Title" placeholder="Enter location title" bind:value={title} name="title" icon="fas fa-map-marker-alt" />
   <SelectInput label="Category" bind:selected={category} options={categories} name="category" icon="fas fa-layer-group" />
-  <div class="flex space-x-4 mb-4">
+  <div class="flex flex-col md:flex-row md:space-y-0 md:space-x-4">
     <div class="flex-1">
       <TextInput
         label="X Coordinate (Longitude)"
