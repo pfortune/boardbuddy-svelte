@@ -4,6 +4,7 @@ import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import { skeleton } from '@skeletonlabs/tw-plugin';
 import { dusk } from "./src/lib/themes/dusk";
+import { matrix } from "./src/lib/themes/matrix";
 
 
 export default {
@@ -28,7 +29,7 @@ export default {
 					{ name: "seafoam",  enhancements: true},
 					{ name: "hamlindigo",  enhancements: true},
 				],
-				custom: [dusk] 
+				custom: [dusk,matrix] 
 			},
 		}),
 	], 
