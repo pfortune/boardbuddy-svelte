@@ -54,9 +54,9 @@
 
   $: locations = data.locations.map((location: Location) => ({
     ...location,
-    games: location.games || [],
-    colour: colours[location.category.toLowerCase() as keyof typeof colours]
+    colour: colours[location.category.toLowerCase()]
   }));
+
 
   function showSuccessMessage(message: string) {
     const t = {
@@ -83,7 +83,7 @@
 
   let openAccordionIndex: number | null = 0;
 
-  $: paginatedLocations = data.locations.slice(
+  $: paginatedLocations = locations.slice(
     paginationSettings.page * paginationSettings.limit,
     paginationSettings.page * paginationSettings.limit + paginationSettings.limit
   );
