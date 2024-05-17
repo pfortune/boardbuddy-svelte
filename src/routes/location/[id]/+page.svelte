@@ -96,7 +96,7 @@
 </div>
 
 <Card title="Map">
-  <LeafletMap id={`map`} location={{ lat: location.x, lng: location.y }} locations={[location]} showLayers={false} zoom={15} class="w-full h-64 md:h-96 lg:h-[500px]" />
+  <LeafletMap id={`map`} location={{ lat: location.y, lng: location.x }} locations={[location]} showLayers={false} zoom={15} class="w-full h-64 md:h-96 lg:h-[500px]" />
 </Card>
 
 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-4">
