@@ -2,13 +2,10 @@
   import SignedIn from "clerk-sveltekit/client/SignedIn.svelte";
   import { enhance } from "$app/forms";
   import LocationForm from "./LocationForm.svelte";
-  import { Card, Badge, CheckRole } from "$lib/ui";
-  import { toTitleCase } from "$lib/util";
-  import { Accordion, AccordionItem, getModalStore, getToastStore } from "@skeletonlabs/skeleton";
-  import { type ToastSettings, type ModalSettings } from "@skeletonlabs/skeleton";
-  import LeafletMap from "$lib/ui/Leaflet.svelte";
+  import { Card, Badge, CheckRole, LeafletMap } from "$lib/ui";
+  import { toTitleCase, pluralize, getJoinedTitles } from "$lib/util";
+  import { Accordion, AccordionItem, getModalStore, getToastStore, type ModalSettings } from "@skeletonlabs/skeleton";
   import type { Location } from "$lib/types/boardbuddy-types";
-
 
   type Data = {
     locations: Location[];
@@ -57,7 +54,6 @@
     colour: colours[location.category.toLowerCase()]
   }));
 
-
   function showSuccessMessage(message: string) {
     const t = {
       message: message,
@@ -65,14 +61,6 @@
     };
     toastStore.trigger(t);
   }
-
-  const pluralize = (count: number, singular: string, plural: string): string => {
-    return count === 1 ? singular : plural;
-  };
-
-  const getJoinedTitles = (games: any[]): string => {
-    return games.map((game) => game.title).join(", ");
-  };
 
   let paginationSettings = {
     page: 0,
