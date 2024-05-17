@@ -1,8 +1,10 @@
 <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
   <div class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
-    <h2 class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl"><i class="fas fa-dice mr-2" aria-hidden="true"></i>Board Buddy</h2>
+    <div class="flex flex-col items-center">
+      <img src="/logo.png" alt="Board Buddy Logo" class="mb-10" />
+    </div>
     <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
-      Connecting board game lovers with local gaming venues. Discover new places to play, review cafes and pubs, and find your next board game night!
+      Connecting board game enthusiasts with local gaming venues. Discover, review, and find your next board game night at cafes and pubs near you!
     </p>
     <div class="mt-10 flex items-center justify-center gap-x-6">
       <a

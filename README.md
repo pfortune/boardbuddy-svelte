@@ -23,11 +23,11 @@ Password: secret
 - **Discover Game-Friendly Locations:** Explore a selection of local cafes, pubs, and other venues with board games, visualized on interactive maps powered by Leaflet, including real-time weather updates for each location.
 - **Venue and Game Management:** After signing up, users can add new locations, complete with games available at each venue and associated images.
 - **Board Game Geek Integration:** Simplify adding games by searching the Board Game Geek API, which automatically populates game details.
-- **Toast Notifications:** Helpful notifications alert users when new locations or games have been added or deleted.
-- **Theme Switching:** Customize the app's appearance with theme switching capabilities, offering 11 built-in themes each with dark and light modes.
+- **Toast Notifications:** Helpful notifications alert users when they add new locations or games have been added or deleted.
+- **Theme Switching:** Customise the app's appearance with theme switching capabilities, offering 11 built-in themes each with dark and light modes.
 - **Responsive Design:** Enjoy a seamless, user-friendly experience across all devices, ensuring access to Board Buddy's features anytime, anywhere.
 - **Secure Account Management:** Robust authentication using Clerk ensures that signing up, logging in, and managing user accounts are secure, protecting user data and privacy.
-- **Admin Oversight:** Admins maintain the integrity of the platform, with capabilities including user management, location updates, and image deletions.
+- **Admin Oversight:** Admins maintain the integrity of the platform, with capabilities including game management, location updates, and image deletions.
 - **Reports and Statistics:** View interesting stats, charts, and trends about the locations and board games at various venues, built with Chart.js.
 - **Ratings:** Users can rate locations out of 5.
 - **Image Gallery:** View images in a carousel for each location, and access an aggregated gallery of all images from every location.
