@@ -6,7 +6,7 @@
 
   const themes: string[] = ["Dusk", "Matrix", "Rocket", "Modern", "Vintage", "Skeleton", "Wintry", "Sahara", "Crimson", "Seafoam", "Hamlindigo"];
 
-  export let width: string = "";
+  export let classes: string = "";
 
   let selectedTheme: string;
   
@@ -41,7 +41,7 @@
 
 </script>
 
-<select class="select {width} pl-5 pr-4" bind:value={selectedTheme} on:change={updateTheme}>
+<select class="select {classes} pl-5 pr-4" bind:value={selectedTheme} on:change={updateTheme}>
   {#each themes as theme}
     <option value={theme.toLowerCase()}>{theme}</option>
   {/each}

@@ -36,12 +36,13 @@
   </svelte:fragment>
 
   <svelte:fragment slot="trail">
-    <div class="flex items-center space-x-4">
-      <LightSwitch />
-      <p class="hidden md:block mr-4">Welcome {username}!</p>
-      <UserButton afterSignOutUrl="/" />
-    </div>
-  </svelte:fragment>
+  <div class="flex items-center space-x-4">
+    <LightSwitch />
+    <p class="hidden lg:block mr-4">Welcome {username}!</p>
+    <UserButton afterSignOutUrl="/" />
+  </div>
+</svelte:fragment>
+
 </AppBar>
 
 <!-- Mobile menu -->

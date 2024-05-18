@@ -25,7 +25,7 @@
             activeClass={activeClass} 
             inactiveClass={inactiveClass} />
         {/each}
-        <ThemeSwitcher width="w-40"/>
+        <ThemeSwitcher classes="hidden xl:block w-40" />
       </ul>
     </nav>
   </div>

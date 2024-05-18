@@ -17,10 +17,6 @@
         data,
         options
       });
-
-      return () => {
-        chart?.destroy();
-      };
     }
   });
 
@@ -32,7 +28,7 @@
 
   onDestroy(() => {
     chart?.destroy();
-  }) ;
+  });
 </script>
 
 <canvas bind:this={canvas}></canvas>
