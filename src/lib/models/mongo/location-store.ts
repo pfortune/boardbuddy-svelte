@@ -6,10 +6,13 @@ import { serialize } from "$lib/util";
 export const locationStore = {
   async getAllLocations(): Promise<Location[]> {
     try {
-      const locations = await LocationMongoose.find().lean();
+      // Sort locations by createdAt in descending order
+      const locations = await LocationMongoose.find().sort({ createdAt: -1 }).lean();
+  
       for (const location of locations) {
         location.games = await gameStore.getGamesByLocationId(location._id);
       }
+  
       return serialize(locations); 
     } catch (error) {
       console.error("Error fetching all locations:", error);
