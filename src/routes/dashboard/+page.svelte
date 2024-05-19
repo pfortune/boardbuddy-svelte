@@ -40,11 +40,11 @@
   export let data: Data;
 
   const colours = {
-    bar: "variant-soft-warning",
-    cafe: "variant-soft-secondary",
-    restaurant: "variant-soft-primary",
-    library: "variant-soft-tertiary",
-    bookstore: "variant-soft-success",
+    bar: "variant-ringed-warning",
+    cafe: "variant-ringed-secondary",
+    restaurant: "variant-ringed-primary",
+    library: "variant-ghost-tertiary",
+    bookstore: "variant-ghost-success",
     "game-store": "variant-ghost-warning",
     "social-space": "variant-ghost-primary"
   };
@@ -132,7 +132,29 @@
                   {location.title} ({location.games.length}
                   {pluralize(location.games.length, "Game", "Games")})
                 </span>
-                <Badge colour={location.colour}>{toTitleCase(location.category)}</Badge>
+                
+               
+
+                <div class="media-right flex items-center">
+                  <div class="mr-5">
+                     <Badge colour={location.colour}>{toTitleCase(location.category)}</Badge>
+                  </div>
+                  <a href={`/location/${location._id}`} class="btn variant-filled-primary py-2 px-4 rounded inline-flex items-center mr-2">
+                    <span class="icon text-sm">
+                      <i class="fas fa-folder-open"></i>
+                    </span>
+                  </a>
+                  <CheckRole role="admin" user={data.user}>
+                    <form id={`delete-form-${location._id}`} action="?/delete" method="post" use:enhance>
+                      <input type="hidden" name="id" value={location._id} />
+                      <button on:click|preventDefault={() => triggerModal(location._id)} class="btn variant-filled-error py-2 px-4 rounded-sm inline-flex items-center">
+                        <span class="icon text-sm">
+                          <i class="fas fa-trash-alt"></i>
+                        </span>
+                      </button>
+                    </form>
+                  </CheckRole>
+                </div>
               </div>
             </svelte:fragment>
             <svelte:fragment slot="content">
@@ -145,23 +167,7 @@
                       </Badge>
                     {/if}
                   </div>
-                  <div class="media-right flex items-center">
-                    <a href={`/location/${location._id}`} class="btn variant-filled-primary py-2 px-4 rounded inline-flex items-center mr-2">
-                      <span class="icon text-sm">
-                        <i class="fas fa-folder-open"></i>
-                      </span>
-                    </a>
-                    <CheckRole role="admin" user={data.user}>
-                      <form id={`delete-form-${location._id}`} action="?/delete" method="post" use:enhance>
-                        <input type="hidden" name="id" value={location._id} />
-                        <button on:click|preventDefault={() => triggerModal(location._id)} class="btn variant-filled-error py-2 px-4 rounded-sm inline-flex items-center">
-                          <span class="icon text-sm">
-                            <i class="fas fa-trash-alt"></i>
-                          </span>
-                        </button>
-                      </form>
-                    </CheckRole>
-                  </div>
+                  
                 </div>
                 <div>
                   {#if location.games.length === 0}

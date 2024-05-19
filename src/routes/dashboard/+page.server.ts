@@ -44,7 +44,7 @@ export const actions: Actions = {
 
       const addedLocation = await locationStore.addLocation(location);
       if (addedLocation) {
-        return { status: 303, headers: { Location: '/dashboard' }, success: true };
+        return { status: 303, success: true };
       } else {
         return { status: 500, errors: { message: "Failed to add location" } };
       }

@@ -35,4 +35,8 @@ export const imageStore = {
         const images = await ImageMongoose.find({ locationid: locationId }).sort({ createdAt: -1 }).lean();
         return serialize(images);
     },
+
+    async deleteImage(imageId: string): Promise<void> {
+        await ImageMongoose.findByIdAndDelete(imageId);
+    }
 };

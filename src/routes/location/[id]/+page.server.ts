@@ -92,5 +92,15 @@ export const actions: Actions = {
         console.error("Error deleting game:", error);
         return { status: 500, errors: { message: "Failed to delete game" } };
       }
+    },
+    delete_image: async ({ request, params }) => {
+      const formData = await request.formData();
+      const imageId = formData.get("imageId");
+  
+      if (typeof imageId === "string") {
+        await imageStore.deleteImage(imageId);
+      }
+  
+      return { success: true };
     }
   };
