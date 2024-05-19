@@ -8,7 +8,7 @@
 
 <LeafletMap
     id="map-with-layers"
-    location={{ lat: 53.2734, lng: -7.7783203 }}
+    location={{ lat: 52.256779, lng: -7.111943 }}
     locations={locations} 
     showLayers={true} 
     zoom={8}

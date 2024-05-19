@@ -16,7 +16,4 @@
   <Card title="Locations near you">
     <Map locations={data.locations} />
   </Card>
-
-  <Card title="Latest Location">
-  </Card>
 </SignedIn>
