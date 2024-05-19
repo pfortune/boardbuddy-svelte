@@ -29,7 +29,6 @@ Password: secret
 - **Secure Account Management:** Robust authentication using Clerk ensures that signing up, logging in, and managing user accounts are secure, protecting user data and privacy.
 - **Admin Oversight:** Admins maintain the integrity of the platform, with capabilities including game management, location updates, and image deletions.
 - **Reports and Statistics:** View interesting stats, charts, and trends about the locations and board games at various venues, built with Chart.js.
-- **Ratings:** Users can rate locations out of 5.
 - **Image Gallery:** View images in a carousel for each location, and access an aggregated gallery of all images from every location.
 
 ## Technology Stack

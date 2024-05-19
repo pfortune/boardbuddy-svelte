@@ -9,5 +9,4 @@ export { default as Badge } from './Badge.svelte';
 export { default as Leaflet } from './Leaflet.svelte';
 export { default as Header } from './Header.svelte';
 export { default as ThemeSwitcher } from './ThemeSwitcher.svelte';
-export { default as Rating } from './Rating.svelte';
 export { default as Chart } from './Chart.svelte';
