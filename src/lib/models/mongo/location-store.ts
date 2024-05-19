@@ -190,9 +190,6 @@ export const locationStore = {
       }
     ]);
 
-    console.log("Trend Data from Server:", trendData); // Log to verify server-side data
-
-    // Ensure we have a complete series of dates with zero counts filled in
     const completeTrendData = [];
     const currentDate = new Date(new Date().setDate(new Date().getDate() - 3));
     const endDate = new Date();

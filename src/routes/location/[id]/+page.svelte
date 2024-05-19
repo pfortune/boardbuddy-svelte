@@ -2,7 +2,7 @@
   import type { PageData } from "./$types";
   import { enhance } from "$app/forms";
   import { toTitleCase } from "$lib/util";
-  import { Card, Carousel, UploadWidget, LeafletMap } from "$lib/ui";
+  import { Card, Carousel, UploadWidget, LeafletMap, Badge } from "$lib/ui";
   import { getModalStore, getToastStore, type ToastSettings, type ModalSettings } from "@skeletonlabs/skeleton";
   import GameTable from "./GameTable.svelte";
   import GameModal from './GameModal.svelte';
@@ -86,6 +86,11 @@
 </div>
 
 <div class="card flex justify-between items-center p-4 mb-4 rounded shadow">
+  <h2 class="text-2xl font-semibold">{location.title} <br>
+    <Badge colour="variant-ghost-secondary" >{toTitleCase(location.category)}</Badge>
+    <Badge icon="fa-map-marker-alt">
+      Coords: X: {location.x}, Y: {location.y}
+    </Badge></h2> 
   <button on:click={triggerModal} class="btn variant-filled-primary py-2 px-4 rounded inline-flex items-center">
     <span class="icon text-sm mr-2">
       <i class="fas fa-plus"></i>
