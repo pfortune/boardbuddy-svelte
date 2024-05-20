@@ -10,13 +10,10 @@ Board Buddy is a web application designed to simplify the discovery and manageme
 
 ### Example Accounts
 
-**Admin**  
+**User**  
 Username: homer@simpson.com  
 Password: secret
 
-**User**  
-Username: marge@simpson.com  
-Password: secret
 
 ### Key Features
 
